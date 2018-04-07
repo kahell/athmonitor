@@ -15,11 +15,11 @@ class CreateCoachesTable extends Migration
     {
         Schema::create('coaches', function (Blueprint $table) {
           $table->bigIncrements('coach_id');
-          $table->unsignedBigInteger('user_id')->index();
+          $table->bigInteger('user_id')->unsigned()->nullable();
           $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
           $table->bigInteger('sport_id')->unsigned()->nullable();
           $table->foreign('sport_id')->references('sport_id')->on('sports')->onDelete('set null')->onUpdate('cascade');
-          $table->bigInteger('achieve_id')->unsigned()->nullable()->index();
+          $table->string('achieve_key')->nullable();
           $table->timestamps();
         });
     }

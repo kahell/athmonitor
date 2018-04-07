@@ -34,9 +34,10 @@ class UsersTableSeeder extends Seeder
         ]);
       }
 
+      $user = User::all();
       foreach (range(1,3) as $i) {
         Statuses::create([
-          'user_id' => $i,
+          'user_id' => $user[$i - 1]->user_id,
           'account_status_id' => $faker->randomElement([1,2,3,4]),
           'blocked_time' => $faker->dateTime(),
           'last_login' =>$faker->dateTime(),
@@ -46,7 +47,6 @@ class UsersTableSeeder extends Seeder
           'resetPassVerificationCode' => ''
         ]);
       }
-
 
     }
 }

@@ -21,7 +21,7 @@ class CreateAthletesTable extends Migration
           $table->foreign('team_id')->references('team_id')->on('teams')->onDelete('set null')->onUpdate('cascade');
           $table->bigInteger('position_type_id')->unsigned()->nullable();
           $table->foreign('position_type_id')->references('position_type_id')->on('position_types')->onDelete('set null')->onUpdate('cascade');
-          $table->bigInteger('achieve_id')->unsigned()->nullable()->index();
+          $table->string('achieve_key')->nullable();
           $table->string('fullname')->nullable();
           $table->enum('gender', ['man', 'woman']);
           $table->string('avatar')->nullable();

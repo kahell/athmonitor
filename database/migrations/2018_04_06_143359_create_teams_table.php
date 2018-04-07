@@ -21,7 +21,7 @@ class CreateTeamsTable extends Migration
           $table->string('address')->nullable();
           $table->string('city')->nullable();
           $table->string('province')->nullable();
-          $table->bigInteger('achieve_id')->unsigned()->nullable()->index();
+          $table->string('achieve_key')->nullable();
           $table->bigInteger('coach_id')->unsigned()->nullable()->index();
           $table->foreign('coach_id')->references('coach_id')->on('coaches')->onDelete('cascade')->onUpdate('cascade');
           $table->timestamps();
