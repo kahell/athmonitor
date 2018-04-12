@@ -9,6 +9,11 @@ use App\Support\FilterPaginateOrder;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth:api')
+        ->except('index','show');
+    }
     public function index()
     {
       return response()
@@ -16,4 +21,5 @@ class UserController extends Controller
           'model' => User::FilterPaginateOrder()
         ]);
     }
+
 }

@@ -12,10 +12,10 @@ class Statuses extends Model
 
   protected $primaryKey = 'status_id';
   protected $fillable = ['user_id','account_status_id','failedLoginAttempt','blocked_time',
-  'last_login','isBlocked','accVerificationCode','isResetCode','resetPassVerificationCode'];
+  'last_login','isBlocked','accVerificationCode','isResetPass','resetPassVerificationCode'];
   protected $hidden = ['created_at', 'updated_at'];
   protected $filter = ['status_id','user_id','account_status_id','failedLoginAttempt','blocked_time',
-  'last_login','isBlocked','accVerificationCode','isResetCode','resetPassVerificationCode'];
+  'last_login','isBlocked','accVerificationCode','isResetPass','resetPassVerificationCode'];
 
   public static function initialize(){
     return [
@@ -26,13 +26,13 @@ class Statuses extends Model
       'last_login' => '',
       'isBlocked' => '',
       'accVerificationCode' => '',
-      'isResetCode' => '',
+      'isResetPass' => '',
       'resetPassVerificationCode' => ''
     ];
   }
 
   public function user()
   {
-      return $this->belongsTo(User::class);
+      return $this->belongsToMany(User::class,'user_id');
   }
 }

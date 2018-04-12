@@ -20,12 +20,11 @@ class CreateUsersTable extends Migration
           $table->string('avatar')->nullable();
           $table->string('address')->nullable();
           $table->string('bod')->nullable();
-          $table->string('phone_number')->unique();
-          $table->bigInteger('status_id')->nullable()->index();
+          $table->string('phone_number')->unique()->nullable();
           $table->bigInteger('role_id')->unsigned()->nullable();
           $table->foreign('role_id')->references('role_id')->on('roles')->onDelete('set null')->onUpdate('cascade');
           $table->string('username')->unique()->index();
-          $table->string('email')->nullable()->unique();
+          $table->string('email')->unique()->index();
           $table->string('password');
           $table->rememberToken();
           $table->timestamps();

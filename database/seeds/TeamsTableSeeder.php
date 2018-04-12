@@ -23,7 +23,7 @@ class TeamsTableSeeder extends Seeder
           Teams::create([
             'name' => $faker->name,
             'avatar' => $faker->imageUrl(640, 480, 'nature'),
-            'description' => $faker->sentence,
+            'description' => $faker->paragraph(mt_rand(5,15)),
             'address' => $faker->address,
             'city' => $faker->city,
             'province' => $faker->state,

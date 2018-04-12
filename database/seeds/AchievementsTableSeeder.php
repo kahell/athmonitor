@@ -22,7 +22,7 @@ class AchievementsTableSeeder extends Seeder
           'name' => $faker->randomElement(['NBA Championship', 'DBL Championship', 'LA Championship', 'Best Players','Rich Player']),
           'achieve_key' => $faker->randomElement([$coachKey[$i - 1]->achieve_key, $athleteKey[$i - 1]->achieve_key, $teamKey[$i - 1]->achieve_key]),
           'images' => $faker->imageUrl(640, 480, 'nature'),
-          'description' => $faker->sentence,
+          'description' => $faker->paragraph(mt_rand(5,15)),
           'level' => $faker->randomElement([1, 2, 3, 4])
         ]);
       }

@@ -17,7 +17,7 @@ class CreateTeamsTable extends Migration
           $table->bigIncrements('team_id');
           $table->string('name');
           $table->string('avatar')->nullable();
-          $table->string('description')->nullable();
+          $table->text('description')->nullable();
           $table->string('address')->nullable();
           $table->string('city')->nullable();
           $table->string('province')->nullable();

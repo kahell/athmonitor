@@ -3,7 +3,9 @@
 namespace App\Model\user;
 
 use App\Model\user\User;
+use App\Model\user\Statuses;
 use App\Model\user\Sports;
+use App\Model\user\Roles;
 use App\Model\user\Achievements;
 use App\Model\user\Teams;
 use App\Model\user\Athletes;
@@ -25,30 +27,42 @@ class Coaches extends Model
 
     public static function initialize(){
       return [
-        'user_id' => 'select',
         'sport_id' => 'select',
-        'achieve_key' => ''
+        'achieve_key' => '',
+        'fullname' => '',
+        'gender' => 0,
+        'avatar' => '',
+        'address' => '',
+        'bod' => '',
+        'phone_number' => '',
+        'email' => '',
+        'account_status_id' => ''
       ];
     }
 
     public function achievement()
     {
-        return $this->hasMany(Achievements::class);
+        return $this->hasMany(Achievements::class,'achieve_key','achieve_key');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id')->join('roles','roles.role_id','=','users.role_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Statuses::class,'user_id');
     }
 
     public function sport()
     {
-        return $this->hasOne(Sports::class);
+        return $this->belongsTo(Sports::class,'sport_id');
     }
 
     public function team()
     {
-        return $this->hasMany(Teams::class);
+        return $this->hasMany(Teams::class,'coach_id');
     }
 
     public function history_coach()

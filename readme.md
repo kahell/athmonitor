@@ -22,8 +22,12 @@ MVC (Model View Controller) - Laravel
 ## Running
 - Clone this repository
 - Create database
+- npm install
+- npm install node-sass
+- npm install sass-loader
 - php artisan migrate
 - php artisan db:seed
+- php artisan jwt:secret
 - Activate your xamp / wamp
 - npm run dev
 - npm run watch

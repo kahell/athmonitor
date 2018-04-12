@@ -25,7 +25,7 @@ class Achievements extends Model
 
     public function coach()
     {
-        return $this->belongsTo(Coaches::class);
+        return $this->hasMany(Coaches::class);
     }
 
     public function athlete()

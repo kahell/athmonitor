@@ -17,7 +17,7 @@ class CreateAchievementsTable extends Migration
           $table->bigIncrements('achievement_id');
           $table->string('achieve_key')->nullable();
           $table->string('name');
-          $table->string('description')->nullable();
+          $table->text('description')->nullable();
           $table->string('images')->nullable();
           $table->enum('level', ['local', 'regional', 'national', 'international']);
           $table->timestamps();

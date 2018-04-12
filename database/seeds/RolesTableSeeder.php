@@ -14,12 +14,12 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
       $faker = Factory::create();
+      Roles::create([
+        'role_name' => 'admin'
+      ]);
+      Roles::create([
+        'role_name' => 'coach'
+      ]);
 
-      Roles::create([
-        'name' => 'coache'
-      ]);
-      Roles::create([
-        'name' => 'admin'
-      ]);
     }
 }

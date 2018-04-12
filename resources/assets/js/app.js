@@ -1,13 +1,11 @@
+import Vue from 'vue'
 
-require('./bootstrap');
-
-window.Vue = require('vue');
-
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import App from './App.vue'
+import router from './router'
 
 const app = new Vue({
-    el: '#app',
-    created(){
-      console.log("hello world!");
-    }
+    el: '#root',
+    template: '<app></app>',
+    components: { App },
+    router
 });

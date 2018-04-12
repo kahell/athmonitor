@@ -14,7 +14,9 @@ class CoachController extends Controller
   {
     return response()
       ->json([
-        'model' => Coaches::filterPaginateOrder()
+        'status' => true,
+        'data' => Coaches::filterPaginateOrder(),
+        'message' => 'Success'
       ],200);
   }
 
@@ -33,7 +35,15 @@ class CoachController extends Controller
     $this->validate($request,[
       'user_id' => 'required',
       'sport_id' => 'required',
-      'achieve_id' => 'required'
+      'achieve_id' => 'required',
+      'fullname' => 'required',
+      'gender' => 'required',
+      'avatar' => 'required',
+      'address' => 'required',
+      'bod' => 'required',
+      'phone_number' => 'required|unique:users',
+      'email' => 'required|email|unique:users',
+      'account_status_id' => 'required'
     ]);
 
     $coach = Coaches::create($request->all());
@@ -46,17 +56,17 @@ class CoachController extends Controller
 
   public function show($id)
   {
-    $coach = Coaches::findOrFail($id);
+    $coach = Coaches::with(['user','status','team','sport','achievement'])->findOrFail($id);
 
     return response()
       ->json([
-        'model' => $coach
+        'data' => $coach
       ],200);
   }
 
   public function edit($id)
   {
-    $coach = Coaches::findOrFail($id);
+    $coach = Coaches::with(['user','status','team','sport'])->findOrFail($id);
 
     return response()
       ->json([

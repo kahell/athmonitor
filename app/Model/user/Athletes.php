@@ -20,7 +20,7 @@ class Athletes extends Model
 
   public static function initialize(){
     return [
-      'coach_id' => 'select', 'team_id' => 'select','position_type_id' => 'select','achieve_key' => '','fullname' => ''
+      'coach_id' => 'select', 'team_id' => 'select','position_type_id' => 'select','achieve_key' => '','fullname' => '',
       'gender' => 1, 'avatar' => '', 'address' => '', 'bod' => '', 'phone_number' => '', 'player_number' => '', 'player_status' => 1
     ];
   }
