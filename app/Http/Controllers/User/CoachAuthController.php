@@ -1,18 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\user\User;
 use App\Model\user\Statuses;
 use Illuminate\Support\Facades\Auth;
 use Hash, Mail, Validator, Session;
-use Illuminate\Mail\Message;
 
-class AuthController extends Controller
+class CoachAuthController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('jwt',['except' => ['login','register','logout','verifyUser','recover','verifyPass']]);
+    $this->middleware('Base_View_Controller',['except' => ['login','register','logout','verifyUser','recover','verifyPass']]);
+  }
+
+  public function loginForm()
+  {
+    return view('user/auth/login');
+  }
+
+  public function registerForm()
+  {
+    return view('user/auth/register');
+  }
+  public function resetForm()
+  {
+    return view('user/auth/reset');
+  }
+  public function showResetForm($verification_code)
+  {
+    $status = Statuses::where('resetPassVerificationCode',$verification_code)->first();
+    if(is_null($status)){
+      return view('user/auth/login');
+    }
+    $data = User::where('user_id',$status->user_id )->first();
+    return view('user/auth/resetForm',compact('data'));
   }
 
   public function register(Request $request)
@@ -87,20 +110,19 @@ class AuthController extends Controller
       ], 200);
     }
 
-    $user = User::where('username', $request->username)
-    ->first();
+    $user = User::where('username', $request->username)->first();
 
     if($user && Hash::check($request->password, $user->password)){
+      $remember_token = str_random(30);
+      $user->remember_token = $remember_token;
       $user->save();
-
       $credentials = request(['username','password']);
-      $token = auth()->attempt($credentials);
-      Session::put('token', $token);
+      Session::put('remember_token', $remember_token);
       return response()
       ->json([
         'status' => true,
         'data' => [
-          'token' => $token,
+          'token' => $remember_token,
           'url' => 'users'
         ],
         'message' => 'Login successfully!'
@@ -234,7 +256,10 @@ class AuthController extends Controller
 
   public function logout()
   {
-    auth()->logout();
+    $session = Session::get('token');
+    $user = User::where('remember_token', $session)->first();
+    $user->update('remember_token','');
+    Session::forget('token');
     return response()->json(['message' => 'Successfully logged out']);
   }
 

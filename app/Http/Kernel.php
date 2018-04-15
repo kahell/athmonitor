@@ -42,6 +42,9 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+        'session' =>[
+          \Illuminate\Session\Middleware\StartSession::class,
+        ],
     ];
 
     /**
@@ -63,5 +66,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
         'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
+        'Base_View_Controller' => \App\Http\Middleware\Base_View_Controller::class,
     ];
 }
