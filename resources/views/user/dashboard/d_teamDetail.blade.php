@@ -31,7 +31,7 @@
                     <div class="col-lg-5">
                       <dl class="dl-horizontal">
 
-                        <dt>Coach:</dt> <dd>{{$user['username']}}</dd>
+                        <dt>Coach:</dt> <dd>{{$coach['user']->fullname}}</dd>
                         <dt>City:</dt> <dd>  {{$team['city']}}</dd>
                         <dt>Province:</dt> <dd> {{$team['province']}}</dd>
                       </dl>
@@ -63,14 +63,16 @@
                               <div class="table-responsive">
                                 <table class="table table-striped table-hover">
                                   <tbody>
-                                    <tr>
-                                      <td class="client-avatar"><img alt="image" src="{{asset('images/profile_small.jpg')}}"> </td>
-                                      <td><a data-toggle="tab" href="#contact-1" class="client-link" aria-expanded="true">Anthony Jackson</a></td>
-                                      <td> Tellus Institute</td>
-                                      <td class="contact-type"><i class="fa fa-envelope"> </i></td>
-                                      <td> gravida@rbisit.com</td>
-                                      <td class="client-status"><span class="label label-primary">Good</span></td>
-                                    </tr>
+                                    @foreach ($athlete as $key)
+                                      <tr>
+                                        <td class="client-avatar"><img alt="image" src="{{(empty($key->avatar)?asset('images/profile_small.jpg'):asset($key->avatar))}}"> </td>
+                                        <td><a href="{{url('users/'.$team['team_id'].'/athlete/'.$key->athlete_id)}}" class="client-link" aria-expanded="true">{{$key->fullname}}</a></td>
+                                        <td> {{$key->position_types}}</td>
+                                        <td class="contact-type"><i class="fa fa-phone"> </i></td>
+                                        <td> {{$key->phone_number}}</td>
+                                        <td class="client-status"><span class="label label-primary">{{$key->player_status}}</span></td>
+                                      </tr>
+                                    @endforeach
                                   </tbody>
                                 </table>
                               </div>
@@ -130,6 +132,7 @@
             <div class="wrapper wrapper-content project-manager">
               <h4>{{ $team['name']}}</h4>
               <img src="{{ (empty($team['avatar']))? asset('images/profile_small.jpg') : asset($team['avatar'])}}" class="img-responsive">
+              <br>
               <p class="small">
                 {{ $team['description']}}
               </p>

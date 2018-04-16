@@ -110,7 +110,7 @@
                 _URL = define on header
                 params = data
               */
-              axios.post(_URL +'register',params,{
+              axios.post(_URL +'registerApi',params,{
                 headers:{
                   'Content-Type':'application/x-www-form-urlencoded',
                   'Accept' : 'application/json'

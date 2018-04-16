@@ -31,15 +31,16 @@
                     <div class="col-lg-5">
                       <dl class="dl-horizontal">
 
-                        <dt>Coach:</dt> <dd>{{$user['username']}}</dd>
-                        <dt>City:</dt> <dd>  {{$team['city']}}</dd>
-                        <dt>Province:</dt> <dd> {{$team['province']}}</dd>
+                        <dt>Coach:</dt> <dd>{{$coach['user']->username}}</dd>
+                        <dt>Address:</dt> <dd>  {{$athlete[0]->address}}</dd>
                       </dl>
                     </div>
                     <div class="col-lg-7" id="cluster_info">
                       <dl class="dl-horizontal" >
 
-                        <dt>Created Team:</dt> <dd> 2018</dd>
+                        <dt>Team:</dt> <dd> {{$team['name']}}</dd>
+                        <dt>Position:</dt> <dd> {{$athlete[0]->position_types}}</dd>
+                        <dt>Player Number:</dt> <dd> {{$athlete[0]->player_number}}</dd>
                       </dl>
                     </div>
                   </div>
@@ -49,8 +50,9 @@
                         <div class="panel-heading">
                           <div class="panel-options">
                             <ul class="nav nav-tabs">
-                              <li class="active"><a href="#tab-1" data-toggle="tab">Athletes</a></li>
+                              <li class="active"><a href="#tab-1" data-toggle="tab">Activites</a></li>
                               <li class=""><a href="#tab-2" data-toggle="tab">Achievement</a></li>
+                              <li class=""><a href="#tab-3" data-toggle="tab">History Injury</a></li>
                             </ul>
                           </div>
                         </div>
@@ -59,6 +61,35 @@
 
                           <div class="tab-content">
                             <div class="tab-pane active" id="tab-1">
+                              <div class="table-responsive">
+
+                                <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Time</th>
+                                      <th>Place</th>
+                                      <th>Type</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <span class="label label-primary">2018-04-08 07:43:10</span>
+                                      </td>
+                                      <td>
+                                        Lapangan Suhat
+                                      </td>
+                                      <td>
+                                        Training
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+
+                              </div>
+
+                            </div>
+                            <div class="tab-pane " id="tab-2">
 
                               <div class="table-responsive">
                                 <table class="table table-striped table-hover">
@@ -76,14 +107,13 @@
                               </div>
 
                             </div>
-                            <div class="tab-pane" id="tab-2">
+                            <div class="tab-pane" id="tab-3">
                               <div class="table-responsive">
 
                                 <table class="table table-striped">
                                   <thead>
                                     <tr>
                                       <th>Level</th>
-                                      <th>Image</th>
                                       <th>Name</th>
                                       <th>Time</th>
                                       <th>Description</th>
@@ -92,16 +122,13 @@
                                   <tbody>
                                     <tr>
                                       <td>
-                                        <span class="label label-primary">National</span>
-                                      </td>
-                                      <td class="client-avatar">
-                                        <img alt="image" src="{{asset('images/profile_small.jpg')}}">
+                                        <span class="label label-error">Bad</span>
                                       </td>
                                       <td>
-                                        DBL Indonesia
+                                        Broken Leg
                                       </td>
                                       <td>
-                                        2018
+                                        2013
                                       </td>
                                       <td>
                                         <p class="small">
@@ -128,17 +155,28 @@
           </div>
           <div class="col-lg-3">
             <div class="wrapper wrapper-content project-manager">
-              <h4>{{ $team['name']}}</h4>
-              <img src="{{ (empty($team['avatar']))? asset('images/profile_small.jpg') : asset($team['avatar'])}}" class="img-responsive">
-              <p class="small">
-                {{ $team['description']}}
+              <h4>{{$athlete[0]->fullname}}</h4>
+              <img src="{{ (empty($athlete[0]->avatar))? asset('images/profile_small.jpg') : asset($athlete[0]->avatar)}}" class="img-responsive">
+              <br>
+              <p class="small font-bold">
+                <span><i class="fa fa-birthday-cake text-primary"></i> {{ empty($athlete[0]->bod) ? '-' : $athlete[0]->bod}}</span>
               </p>
               <p class="small font-bold">
-                {{-- <span><i class="fa fa-circle text-green"></i> Active</span> --}}
+                <span><i class="fa fa-venus text-primary"></i> {{ empty($athlete[0]->gender) ? '-' : $athlete[0]->gender}}</span>
+              </p>
+              <p class="small font-bold">
+                <span><i class="fa fa-phone text-primary"></i> {{ empty($athlete[0]->phone_number) ? '-' : $athlete[0]->phone_number}}</span>
               </p>
               <div class="text-center m-t-md">
-                <a href="#" class="btn btn-xs btn-primary">Add Players</a>
+                <a href="#" class="btn btn-xs btn-primary">Edit Athlete</a>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="flot-chart">
+              <div class="flot-chart-content" id="flot-dashboard-chart"></div>
             </div>
           </div>
         </div>

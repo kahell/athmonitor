@@ -256,11 +256,12 @@ class CoachAuthController extends Controller
 
   public function logout()
   {
-    $session = Session::get('token');
+    $session = Session::get('remember_token');
     $user = User::where('remember_token', $session)->first();
-    $user->update('remember_token','');
-    Session::forget('token');
-    return response()->json(['message' => 'Successfully logged out']);
+    $user->remember_token = '';
+    $user->save();
+    Session::pull('remember_token');
+    return redirect('/');
   }
 
   public function refresh()

@@ -21,9 +21,8 @@ class Base_View_Controller
         }
         return $next($request);
       }else{
-        return redirect('login');
+        return $next($request);
       }
-
 
     }
 }

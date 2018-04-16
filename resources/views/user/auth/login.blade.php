@@ -1,4 +1,4 @@
-@extends('admin/app')
+@extends('user/dashboard')
 
 @section('body_color', 'gray-bg')
 
@@ -17,11 +17,12 @@
           <p>Login in. To see it in action.</p>
           <form class="m-t" role="form" method="post" id='form' action="?">
             <div class="form-group">
-              <input type="username" class="form-control" placeholder="Username" id="input_username" name="input_username">
+              <input type="text" class="form-control" placeholder="Username" id="input_username" name="input_username">
             </div>
             <div class="form-group">
               <input type="password" class="form-control" placeholder="Password" name="input_password" id="input_password">
             </div>
+
             <button type="submit" name="submit" id="submit" class="btn btn-primary block full-width m-b ladda-button"  data-style="zoom-out">Login</button>
             <a href="{{url('reset')}}"><small>Forgot password?</small></a>
             <p class="text-muted text-center"><small>Do not have an account?</small></p>
@@ -54,11 +55,11 @@
             params.append("username", $('#input_username').val());
             params.append("password", $('#input_password').val());
 
-            axios.post(_URL +'login',params,{
-              headers:{
-                'Content-Type':'application/x-www-form-urlencoded',
-                'Accept' : 'application/json'
-            }}).then((response)=>{
+            axios.post(_URL +'loginApi',params,{
+                headers:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                }
+            }).then((response)=>{
               var res = response.data;
               if(res.status == false){
                 swal({

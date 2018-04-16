@@ -5,6 +5,7 @@ use App\Model\user\Achievements;
 use App\Model\user\Coaches;
 use App\Model\user\Teams;
 use App\Model\user\Scores;
+use App\Model\user\Position_types;
 use App\Model\user\History_athlete;
 use App\Support\FilterPaginateOrder;
 
@@ -38,6 +39,11 @@ class Athletes extends Model
   public function achievement()
   {
       return $this->hasMany(Achievements::class);
+  }
+
+  public function position_types()
+  {
+      return $this->belongsTo(Position_types::class);
   }
 
   public function score()

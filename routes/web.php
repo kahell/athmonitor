@@ -20,16 +20,17 @@ Route::group(['namespace' => 'User'], function(){
   Route::get('register','CoachAuthController@registerForm');
   Route::get('reset','CoachAuthController@resetForm');
   Route::get('reset/{token}', 'CoachAuthController@showResetForm');
+  Route::get('logout','CoachAuthController@logout');
 
-  Route::post('register','CoachAuthController@register');
-  Route::post('login','CoachAuthController@login');
-  Route::post('recover', 'CoachAuthController@recover');
-  Route::post('verifyPass', 'CoachAuthController@verifyPass');
+  Route::post('registerApi','CoachAuthController@register');
+  Route::post('loginApi','CoachAuthController@login');
+  Route::post('recoverApi', 'CoachAuthController@recover');
+  Route::post('verifyPassApi', 'CoachAuthController@verifyPass');
 
   /* Dashboard User */
   Route::get("users",'DashboardController@index')->name('users');
-  Route::get("users/team",'DashboardController@team');
-  Route::get("users/team/{team}",'DashboardController@teamDetail');
-  Route::get("users/team/{team}/athlete/{athlete}",'DashboardController@athlete');
-  Route::get("users/monitor",'DashboardController@monitor');
+  Route::get("users/{team}",'DashboardController@home');
+  Route::get("users/{team}/team",'DashboardController@teamDetail');
+  Route::get("users/{team}/athlete/{athlete}",'DashboardController@athlete');
+  Route::get("users/{team}/monitor",'DashboardController@monitor');
 });

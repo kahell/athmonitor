@@ -44,7 +44,7 @@
 
             params.append("email", $('#input_email').val());
 
-            axios.post(_URL +'recover',params,{
+            axios.post(_URL +'recoverApi',params,{
               headers:{
                 'Content-Type':'application/x-www-form-urlencoded',
                 'Accept' : 'application/json'

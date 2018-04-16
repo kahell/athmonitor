@@ -55,7 +55,7 @@
             params.append("password_confirmation", $('#input_confirm_password').val());
             params.append("user_id", {{ $data->user_id}});
 
-            axios.post(_URL +'verifyPass',params,{
+            axios.post(_URL +'verifyPassApi',params,{
               headers:{
                 'Content-Type':'application/x-www-form-urlencoded',
                 'Accept' : 'application/json'

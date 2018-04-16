@@ -49,35 +49,23 @@
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Position</th>
-                        <th>Team</th>
+                        <th>Player Number</th>
+                        <th>Status</th>
                         <th>Scores</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Patrick Smith</td>
-                        <td>Man</td>
-                        <td>Striker</td>
-                        <td><strong>FILKOM</strong></td>
-                        <td>50</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Lucinta</td>
-                        <td>Woman</td>
-                        <td>Back</td>
-                        <td><strong>FILKOM</strong></td>
-                        <td>30</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Maria</td>
-                        <td>Woman</td>
-                        <td>Keeper</td>
-                        <td><strong>FILKOM</strong></td>
-                        <td>80</td>
-                      </tr>
+                      @foreach ($athlete as $key)
+                        <tr>
+                          <td>{{$key->athlete_id}}</td>
+                          <td>{{$key->fullname}}</td>
+                          <td>{{$key->gender}}</td>
+                          <td>{{$key->position_types}}</td>
+                          <td>{{$key->player_number}}</td>
+                          <td><span class='label label-primary'>{{$key->player_status}}</span></td>
+                          <td>50</td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

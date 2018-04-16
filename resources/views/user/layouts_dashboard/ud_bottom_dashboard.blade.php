@@ -51,8 +51,6 @@
 <script src="{{asset('admin/js/plugins/ladda/ladda.jquery.min.js')}}"></script>
 <!-- Crypto -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-<!-- ChartJS-->
-<script src="{{asset('admin/js/plugins/chartJs/Chart.min.js')}}"></script>
 <!-- Flot -->
 <script src="{{asset('admin/js/plugins/flot/jquery.flot.js')}}"></script>
 <script src="{{asset('admin/js/plugins/flot/jquery.flot.tooltip.min.js')}}"></script>
