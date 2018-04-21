@@ -14,14 +14,14 @@ class CreateScoresTable extends Migration
     public function up()
     {
         Schema::create('scores', function (Blueprint $table) {
-          $table->bigIncrements('score_id');
+          $table->bigIncrements('id');
           $table->bigInteger('parameter_id')->unsigned()->nullable();
-          $table->foreign('parameter_id')->references('parameter_id')->on('parameters')->onDelete('set null')->onUpdate('cascade');
+          $table->foreign('parameter_id')->references('id')->on('parameters')->onDelete('set null')->onUpdate('cascade');
           $table->integer('value');
           $table->bigInteger('athlete_id')->unsigned()->nullable();
-          $table->foreign('athlete_id')->references('athlete_id')->on('athletes')->onDelete('cascade')->onUpdate('cascade');
+          $table->foreign('athlete_id')->references('id')->on('athletes')->onDelete('cascade')->onUpdate('cascade');
           $table->bigInteger('activity_id')->unsigned()->nullable();
-          $table->foreign('activity_id')->references('activity_id')->on('activities')->onDelete('cascade')->onUpdate('cascade');
+          $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade')->onUpdate('cascade');
           $table->timestamps();
         });
     }

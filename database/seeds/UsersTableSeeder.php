@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory;
-use App\Model\user\User;
-use App\Model\user\Statuses;
+use App\Model\Users\User;
+use App\Model\Users\Statuses;
 
 class UsersTableSeeder extends Seeder
 {
@@ -29,15 +29,14 @@ class UsersTableSeeder extends Seeder
           'phone_number' => $faker->phoneNumber,
           'username' => $faker->unique()->userName,
           'email' => $faker->unique()->safeEmail,
-          'password' => bcrypt('1234'),
-          'role_id' => $faker->randomElement([1, 2])
+          'password' => bcrypt('1234')
         ]);
       }
 
       $user = User::all();
       foreach (range(1,3) as $i) {
         Statuses::create([
-          'user_id' => $user[$i - 1]->user_id,
+          'user_id' => $user[$i - 1]->id,
           'account_status_id' => $faker->randomElement([1,2,3,4]),
           'blocked_time' => $faker->dateTime(),
           'last_login' =>$faker->dateTime(),

@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory;
-use App\Model\user\Teams;
-use App\Model\user\Coaches;
+use App\Model\Teams\Teams;
+use App\Model\Teams\Coaches;
 
 class TeamsTableSeeder extends Seeder
 {
@@ -27,8 +27,7 @@ class TeamsTableSeeder extends Seeder
             'address' => $faker->address,
             'city' => $faker->city,
             'province' => $faker->state,
-            'achieve_key' => $faker->unixTime($max = 'now'),
-            'coach_id' => $coach[$i - 1]->coach_id
+            'coach_id' => $coach[$i - 1]->id
           ]);
         }
     }

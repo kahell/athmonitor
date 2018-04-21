@@ -21,6 +21,4 @@ class UserController extends Controller
           'model' => User::FilterPaginateOrder()
         ]);
     }
-    
-
 }

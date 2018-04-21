@@ -14,9 +14,9 @@ class CreateStatusesTable extends Migration
     public function up()
     {
         Schema::create('statuses', function (Blueprint $table) {
-          $table->bigIncrements('status_id');
+          $table->bigIncrements('id');
           $table->unsignedBigInteger('user_id')->index();
-          $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+          $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
           $table->enum('account_status_id', ['active', 'inactive','banned','blocked']);
           $table->integer('failedLoginAttempt')->default(0)->nullable();
           $table->dateTime('blocked_time')->nullable();

@@ -1,4 +1,4 @@
-@extends('admin/app')
+@extends('user/dashboard')
 
 @section('body_color', 'gray-bg')
 
@@ -47,7 +47,7 @@
             axios.post(_URL +'recoverApi',params,{
               headers:{
                 'Content-Type':'application/x-www-form-urlencoded',
-                'Accept' : 'application/json'
+                //'Accept' : 'application/json'
             }}).then((response)=>{
               var res = response.data;
               if(res.status == false){

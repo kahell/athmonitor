@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory;
-use App\Model\user\Sports;
-use App\Model\user\Position_types;
+use App\Model\Sports\Sports;
+use App\Model\Sports\Position_types;
 
 class PositionTypesTableSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class PositionTypesTableSeeder extends Seeder
       foreach (range(1,3) as $i) {
         Position_types::create([
           'name' => $faker->name,
-          'sport_id' => $sport[$i - 1]->sport_id,
+          'sport_id' => $sport[$i - 1]->id,
         ]);
       }
     }

@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory;
-use App\Model\user\Athletes;
-use App\Model\user\Coaches;
-use App\Model\user\Teams;
-use App\Model\user\Position_types;
+use App\Model\Teams\Athletes;
+use App\Model\Teams\Coaches;
+use App\Model\Teams\Teams;
+use App\Model\Sports\Position_types;
 
 class AthletesTableSeeder extends Seeder
 {
@@ -19,12 +19,10 @@ class AthletesTableSeeder extends Seeder
     foreach (range(1,3) as $i) {
       $chooseGender = $faker->randomElement(['male', 'female']);
       $genderInitial = ($chooseGender == 'male') ? 'M' : 'F';
-      $team = Teams::where('coach_id',$coach[$i - 1]->coach_id)->get();
+      $team = Teams::where('coach_id',$coach[$i - 1]->id)->get();
       Athletes::create([
-        'coach_id' => $coach[$i - 1]->coach_id,
-        'team_id' => $team[0]->team_id,
-        'position_type_id' => $position[$i -1]->position_type_id,
-        'achieve_key' => $faker->unixTime($max = 'now'),
+        'team_id' => $team[0]->id,
+        'position_type_id' => $position[$i -1]->id,
         'fullname' => $faker->name,
         'gender' => $faker->randomElement([1, 2]),
         'avatar' => 'http://www.designskilz.com/random-users/images/image'.$genderInitial.rand(1, 50).'.jpg',

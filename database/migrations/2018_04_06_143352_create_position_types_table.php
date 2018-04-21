@@ -14,10 +14,10 @@ class CreatePositionTypesTable extends Migration
     public function up()
     {
         Schema::create('position_types', function (Blueprint $table) {
-          $table->bigIncrements('position_type_id');
+          $table->bigIncrements('id');
           $table->string('name');
           $table->bigInteger('sport_id')->unsigned()->nullable();
-          $table->foreign('sport_id')->references('sport_id')->on('sports')->onDelete('set null')->onUpdate('cascade');
+          $table->foreign('sport_id')->references('id')->on('sports')->onDelete('set null')->onUpdate('cascade');
           $table->timestamps();
         });
     }

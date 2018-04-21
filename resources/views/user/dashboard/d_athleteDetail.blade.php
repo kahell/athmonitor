@@ -23,7 +23,14 @@
                         <h2>Athlete</h2>
                       </div>
                       <dl class="dl-horizontal">
-                        <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
+                        <dt>Status:</dt>
+                        <dd>
+                          @if ($user->status->name === "active")
+                            <span class='label label-primary'>Active</span>
+                          @else
+                            <span class='label label-default'>In-active</span>
+                          @endif
+                        </dd>
                       </dl>
                     </div>
                   </div>
@@ -31,16 +38,16 @@
                     <div class="col-lg-5">
                       <dl class="dl-horizontal">
 
-                        <dt>Coach:</dt> <dd>{{$coach['user']->username}}</dd>
-                        <dt>Address:</dt> <dd>  {{$athlete[0]->address}}</dd>
+                        <dt>Coach:</dt> <dd>{{$user['fullname']}}</dd>
+                        <dt>Address:</dt> <dd>{{$athlete['address']}}</dd>
                       </dl>
                     </div>
                     <div class="col-lg-7" id="cluster_info">
                       <dl class="dl-horizontal" >
 
                         <dt>Team:</dt> <dd> {{$team['name']}}</dd>
-                        <dt>Position:</dt> <dd> {{$athlete[0]->position_types}}</dd>
-                        <dt>Player Number:</dt> <dd> {{$athlete[0]->player_number}}</dd>
+                        <dt>Position:</dt> <dd> {{$athlete->position_type->name}}</dd>
+                        <dt>Player Number:</dt> <dd> {{$athlete['player_number']}}</dd>
                       </dl>
                     </div>
                   </div>
@@ -155,17 +162,17 @@
           </div>
           <div class="col-lg-3">
             <div class="wrapper wrapper-content project-manager">
-              <h4>{{$athlete[0]->fullname}}</h4>
-              <img src="{{ (empty($athlete[0]->avatar))? asset('images/profile_small.jpg') : asset($athlete[0]->avatar)}}" class="img-responsive">
+              <h4>{{$athlete['fullname']}}</h4>
+              <img src="{{ (empty($athlete['avatar']))? asset('images/profile_small.jpg') : asset($athlete['avatar'])}}" class="img-responsive">
               <br>
               <p class="small font-bold">
-                <span><i class="fa fa-birthday-cake text-primary"></i> {{ empty($athlete[0]->bod) ? '-' : $athlete[0]->bod}}</span>
+                <span><i class="fa fa-birthday-cake text-primary"></i> {{ empty($athlete['bod']) ? '-' : $athlete['bod']}}</span>
               </p>
               <p class="small font-bold">
-                <span><i class="fa fa-venus text-primary"></i> {{ empty($athlete[0]->gender) ? '-' : $athlete[0]->gender}}</span>
+                <span><i class="fa fa-venus text-primary"></i> {{ empty($athlete['gender']) ? '-' : $athlete['gender']}}</span>
               </p>
               <p class="small font-bold">
-                <span><i class="fa fa-phone text-primary"></i> {{ empty($athlete[0]->phone_number) ? '-' : $athlete[0]->phone_number}}</span>
+                <span><i class="fa fa-phone text-primary"></i> {{ empty($athlete['phone_number']) ? '-' : $athlete['phone_number']}}</span>
               </p>
               <div class="text-center m-t-md">
                 <a href="#" class="btn btn-xs btn-primary">Edit Athlete</a>

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory;
-use App\Model\user\Roles;
+use App\Model\Sports\Roles;
 
 class RolesTableSeeder extends Seeder
 {
@@ -15,10 +15,10 @@ class RolesTableSeeder extends Seeder
     {
       $faker = Factory::create();
       Roles::create([
-        'role_name' => 'admin'
+        'name' => 'admin'
       ]);
       Roles::create([
-        'role_name' => 'coach'
+        'name' => 'coach'
       ]);
 
     }

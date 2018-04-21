@@ -28,6 +28,7 @@ MVC (Model View Controller) - Laravel
 - php artisan migrate
 - php artisan db:seed
 - php artisan jwt:secret
+- php artisan storage:link
 - Activate your xamp / wamp
 - npm run dev
 - npm run watch

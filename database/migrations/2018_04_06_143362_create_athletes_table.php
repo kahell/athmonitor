@@ -14,14 +14,11 @@ class CreateAthletesTable extends Migration
     public function up()
     {
         Schema::create('athletes', function (Blueprint $table) {
-          $table->bigIncrements('athlete_id');
-          $table->bigInteger('coach_id')->unsigned()->nullable();
-          $table->foreign('coach_id')->references('coach_id')->on('coaches')->onDelete('set null')->onUpdate('cascade');
+          $table->bigIncrements('id');
           $table->bigInteger('team_id')->unsigned()->nullable();
-          $table->foreign('team_id')->references('team_id')->on('teams')->onDelete('set null')->onUpdate('cascade');
+          $table->foreign('team_id')->references('id')->on('teams')->onDelete('set null')->onUpdate('cascade');
           $table->bigInteger('position_type_id')->unsigned()->nullable();
-          $table->foreign('position_type_id')->references('position_type_id')->on('position_types')->onDelete('set null')->onUpdate('cascade');
-          $table->string('achieve_key')->nullable();
+          $table->foreign('position_type_id')->references('id')->on('position_types')->onDelete('set null')->onUpdate('cascade');
           $table->string('fullname')->nullable();
           $table->enum('gender', ['man', 'woman']);
           $table->string('avatar')->nullable();

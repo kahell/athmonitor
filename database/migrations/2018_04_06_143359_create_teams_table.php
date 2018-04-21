@@ -14,16 +14,15 @@ class CreateTeamsTable extends Migration
     public function up()
     {
         Schema::create('teams', function (Blueprint $table) {
-          $table->bigIncrements('team_id');
+          $table->bigIncrements('id');
           $table->string('name');
           $table->string('avatar')->nullable();
           $table->text('description')->nullable();
           $table->string('address')->nullable();
           $table->string('city')->nullable();
           $table->string('province')->nullable();
-          $table->string('achieve_key')->nullable();
           $table->bigInteger('coach_id')->unsigned()->nullable()->index();
-          $table->foreign('coach_id')->references('coach_id')->on('coaches')->onDelete('cascade')->onUpdate('cascade');
+          $table->foreign('coach_id')->references('id')->on('coaches')->onDelete('cascade')->onUpdate('cascade');
           $table->timestamps();
         });
     }

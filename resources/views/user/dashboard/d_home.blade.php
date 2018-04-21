@@ -55,14 +55,20 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($athlete as $key)
+                      @foreach ($collectAthlete as $key)
                         <tr>
-                          <td>{{$key->athlete_id}}</td>
+                          <td>{{$key->id}}</td>
                           <td>{{$key->fullname}}</td>
                           <td>{{$key->gender}}</td>
-                          <td>{{$key->position_types}}</td>
+                          <td>{{$key->position_type->name}}</td>
                           <td>{{$key->player_number}}</td>
-                          <td><span class='label label-primary'>{{$key->player_status}}</span></td>
+                          <td>
+                            @if ($key->player_status === "active")
+                              <span class='label label-primary'>Active</span>
+                            @else
+                              <span class='label label-default'>In-active</span>
+                            @endif
+                          </td>
                           <td>50</td>
                         </tr>
                       @endforeach
@@ -76,6 +82,46 @@
         </div>
 
       </div>
+
+      <!-- Modal -->
+      <div class="modal inmodal" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content animated bounceInRight">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                      <i class="fa fa-plus-square modal-icon"></i>
+                      <h4 class="modal-title">Add new Team</h4>
+                      <small class="font-bold">Please fill all related field.</small>
+                  </div>
+                  <form role="form" id="form" >
+                    <div class="modal-body">
+                        @foreach ($form as $key => $value)
+                          <div class="form-group">
+                            <label>{{ucfirst($key)}}</label>
+                            @if ($key === "avatar")
+                              <input id="input_{{ $key }}" name="input_{{ $key }}" type="file" class="form-control">
+                            @elseif ($key === "description")
+                              <textarea id="input_{{ $key }}" name="input_{{ $key }}" placeholder="Enter {{ $key }}" class="form-control"></textarea>
+                            @elseif ($key === "address")
+                              <textarea id="input_{{ $key }}" name="input_{{ $key }}" placeholder="Enter {{ $key }}" class="form-control"></textarea>
+                            @elseif ($key === "coach_id")
+                              <input id="input_{{ $key }}" name="input_{{ $key }}" type="text" placeholder="Enter {{ $key }}" value="{{ $coach['id'] }}" class="form-control" disabled>
+                            @else
+                              <input id="input_{{ $key }}" name="input_{{ $key }}" type="text" placeholder="Enter {{ $key }}" class="form-control">
+                            @endif
+
+                          </div>
+                        @endforeach
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <button class="ladda-button btn btn-primary" id="submit" type="submit" data-style="zoom-out">Submit</button>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      <!-- End of Modal -->
     </div>
   </div>
 @endsection
@@ -164,22 +210,117 @@
         axisLabelPadding: 3
       }
     ],
-    legend: {
-      noColumns: 1,
-      labelBoxBorderColor: "#000000",
-      position: "nw"
-    },
-    grid: {
-      hoverable: false,
-      borderWidth: 0
-    }
-  };
+      legend: {
+        noColumns: 1,
+        labelBoxBorderColor: "#000000",
+        position: "nw"
+      },
+      grid: {
+        hoverable: false,
+        borderWidth: 0
+      }
+    };
 
   function gd(year, month, day) {
     return new Date(year, month - 1, day).getTime();
   }
 
   $.plot($("#flot-dashboard-chart"), dataset, options);
+
+  $('#add-new-team-button').click(function(e){
+     e.preventDefault();
+     $('#input_name').val('');
+     $('#input_avatar').val('');
+     $('#input_description').val('');
+     $('#input_address').val('');
+     $('#input_city').val('');
+     $('#input_province').val('');
+     $('.fa-plus-square').show();
+  });
+
+  var l = $( '#submit' ).ladda();
+  l.click(function(){
+    $("#form").validate({
+        rules: {
+          'input_name':{
+            required: true,
+            minlength: 4
+          },
+          'input_description':{
+            required: true,
+            minlength: 10
+          },
+          'input_avatar':{
+            required: true
+          },
+          'input_address':{
+            required: true,
+            minlength: 10
+          },
+          'input_city':{
+            required: true
+          },
+          'input_province':{
+            required: true
+          },
+          'input_coach_id':{
+            required: true,
+            number: true,
+            min: 0
+          }
+        },
+        submitHandler : function(form){
+          l.ladda( 'start' );
+
+          let params =  new FormData();
+          let url = document.querySelector('#input_avatar');
+
+          params.append("name", $('#input_name').val());
+          params.append("description", $('#input_description').val());
+          params.append("address", $('#input_address').val());
+          params.append("city", $('#input_city').val());
+          params.append("province", $('#input_province').val());
+          params.append("coach_id", $('#input_coach_id').val());
+          params.append("file", url.files[0]);;
+
+          axios.post(_URL+'api/teams',params,{
+            headers:headers
+          }).then(function(response){
+            res = response.data;
+            //if response success
+            if(res.status == false){
+
+              swal({
+                title: "Please. Try Again.",
+                text: res.message,
+                icon: "error",
+                type: "error"
+              },function(isConfirm){
+                l.ladda('stop');
+                // $('#modal').modal('hide');
+              });
+            }else{
+
+              swal({
+                title: "Success",
+                text: res.message,
+                type: "success"
+              },function(isConfirm){
+                l.ladda('stop');
+                $('#modal').modal('hide');
+                window.location = _URL + res.data.url;
+              });
+            }
+          }).catch(function(error){
+            console.log(error);
+            //swal of error
+          });
+
+        }
+    });
+  });
+
+
 });
 
 </script>

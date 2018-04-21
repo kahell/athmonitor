@@ -3,13 +3,14 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use JWTAuth;
+use JWTAuth, Auth;
 
 class JWT
 {
     public function handle($request, Closure $next)
     {
-      if ($request->has('token')) {
+      $header = $request->header('Authorization');
+      if (!empty($header)) {
         try {
             $this->auth = JWTAuth::parseToken()->authenticate();
             return $next($request);
@@ -19,5 +20,6 @@ class JWT
       }else{
         return response()->json(['error' => 'Token Must Required'], 404);
       }
+
     }
 }

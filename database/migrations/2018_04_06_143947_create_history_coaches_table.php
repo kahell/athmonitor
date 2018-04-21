@@ -14,11 +14,11 @@ class CreateHistoryCoachesTable extends Migration
     public function up()
     {
         Schema::create('history_coaches', function (Blueprint $table) {
-          $table->bigIncrements('history_coach_id');
+          $table->bigIncrements('id');
           $table->unsignedBigInteger('coach_id')->index();
-          $table->foreign('coach_id')->references('coach_id')->on('coaches')->onDelete('cascade')->onUpdate('cascade');
+          $table->foreign('coach_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
           $table->bigInteger('team_id')->unsigned()->nullable()->undex();
-          $table->foreign('team_id')->references('team_id')->on('teams')->onDelete('set null')->onUpdate('cascade');
+          $table->foreign('team_id')->references('id')->on('teams')->onDelete('set null')->onUpdate('cascade');
           $table->dateTime('started_date');
           $table->dateTime('end_date');
           $table->timestamps();

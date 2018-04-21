@@ -1,4 +1,4 @@
-@extends('admin/app')
+@extends('user/dashboard')
 
 @section('body_color', 'gray-bg')
 
@@ -21,6 +21,9 @@
                   <option value='man' selected>Man</option>
                   <option value='woman' >Woman</option>
                 </select>
+              </div>
+              <div class="form-group">
+                <select class='form-control' name="input_sport" id="input_sport"></select>
               </div>
               <div class="form-group">
                   <input type="email" class="form-control" placeholder="Email" id="input_email" name="input_email">
@@ -49,7 +52,29 @@
 
 @section('script')
   <script>
+  function getAllSports(){
+    axios.get(_URL +'api/sports',{},{
+      headers:{
+        'Content-Type':'application/x-www-form-urlencoded',
+        'Accept' : 'application/json'
+    }}).then((response)=>{
+      var res = response.data.data;
+      var result = "";
+      $('#input_sport').children('option').remove();
+      for (i = 0; i < res.length; i++) {
+        if(i == 0){
+          result += "<option selected value='"+res[i].id+"'>"+res[i].name+"</option>";
+        }else{
+          result += "<option value='"+res[i].id+"'>"+res[i].name+"</option>";
+        }
+      }
+      $('#input_sport').append(result);
+    }).catch((error)=>{
+        console.log(error.response.data)
+    });
+  }
   $(document).ready(function(){
+    getAllSports();
     var l = $( '#submit' ).ladda();
     l.click(function(){
       $("#form").validate({
@@ -80,6 +105,9 @@
             },
             input_gender:{
               required: true
+            },
+            input_sport:{
+              required: true,
             }
           },
           submitHandler : function(form){
@@ -92,6 +120,7 @@
             params.append("password", $('#input_password').val());
             params.append("password_confirmation", $('#input_confirm_password').val());
             params.append("gender", $('#input_gender').val());
+            params.append("sport", $('#input_sport').val());
             params.append("email", $('#input_email').val());
 
             // Check box check

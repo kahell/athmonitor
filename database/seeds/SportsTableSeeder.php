@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory;
-use App\Model\user\Sports;
+use App\Model\Sports\Sports;
 
 class SportsTableSeeder extends Seeder
 {

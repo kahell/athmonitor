@@ -23,7 +23,14 @@
                         <h2>Team</h2>
                       </div>
                       <dl class="dl-horizontal">
-                        <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
+                        <dt>Status:</dt>
+                        <dd>
+                          @if ($user->status->name === "active")
+                            <span class='label label-primary'>Active</span>
+                          @else
+                            <span class='label label-default'>In-active</span>
+                          @endif
+                        </dd>
                       </dl>
                     </div>
                   </div>
@@ -31,7 +38,7 @@
                     <div class="col-lg-5">
                       <dl class="dl-horizontal">
 
-                        <dt>Coach:</dt> <dd>{{$coach['user']->fullname}}</dd>
+                        <dt>Coach:</dt> <dd>{{$user['fullname']}}</dd>
                         <dt>City:</dt> <dd>  {{$team['city']}}</dd>
                         <dt>Province:</dt> <dd> {{$team['province']}}</dd>
                       </dl>
@@ -39,7 +46,7 @@
                     <div class="col-lg-7" id="cluster_info">
                       <dl class="dl-horizontal" >
 
-                        <dt>Created Team:</dt> <dd> 2018</dd>
+                        <dt>Created Team:</dt> <dd> {{$team['created_at']}}</dd>
                       </dl>
                     </div>
                   </div>
@@ -59,24 +66,35 @@
 
                           <div class="tab-content">
                             <div class="tab-pane active" id="tab-1">
-
-                              <div class="table-responsive">
-                                <table class="table table-striped table-hover">
-                                  <tbody>
-                                    @foreach ($athlete as $key)
-                                      <tr>
-                                        <td class="client-avatar"><img alt="image" src="{{(empty($key->avatar)?asset('images/profile_small.jpg'):asset($key->avatar))}}"> </td>
-                                        <td><a href="{{url('users/'.$team['team_id'].'/athlete/'.$key->athlete_id)}}" class="client-link" aria-expanded="true">{{$key->fullname}}</a></td>
-                                        <td> {{$key->position_types}}</td>
-                                        <td class="contact-type"><i class="fa fa-phone"> </i></td>
-                                        <td> {{$key->phone_number}}</td>
-                                        <td class="client-status"><span class="label label-primary">{{$key->player_status}}</span></td>
-                                      </tr>
-                                    @endforeach
-                                  </tbody>
-                                </table>
-                              </div>
-
+                              @if (empty($collectAthlete))
+                                <div style='text-align: center'>
+                                  <img style='width:150px;' src='{{ asset('images/logo/minar_logo.png') }}' />
+                                  <h3>NO DATA IN ATHLETE</h3>
+                                </div>
+                              @else
+                                <div class="table-responsive">
+                                  <table class="table table-striped table-hover">
+                                    <tbody>
+                                      @foreach ($collectAthlete as $key)
+                                        <tr>
+                                          <td class="client-avatar"><img alt="image" src="{{(empty($key->avatar)?asset('images/profile_small.jpg'):asset($key->avatar))}}"> </td>
+                                          <td><a href="{{url('users/'.$team['id'].'/athlete/'.$key->id)}}" class="client-link" aria-expanded="true">{{$key->fullname}}</a></td>
+                                          <td> {{$key->position_type->name}}</td>
+                                          <td class="contact-type"><i class="fa fa-phone"> </i></td>
+                                          <td> {{$key->phone_number}}</td>
+                                          <td class="client-status">
+                                            @if ($key->player_status === "active")
+                                              <span class='label label-primary'>Active</span>
+                                            @else
+                                              <span class='label label-default'>In-active</span>
+                                            @endif
+                                          </td>
+                                        </tr>
+                                      @endforeach
+                                    </tbody>
+                                  </table>
+                                </div>
+                              @endif
                             </div>
                             <div class="tab-pane" id="tab-2">
                               <div class="table-responsive">
@@ -131,7 +149,7 @@
           <div class="col-lg-3">
             <div class="wrapper wrapper-content project-manager">
               <h4>{{ $team['name']}}</h4>
-              <img src="{{ (empty($team['avatar']))? asset('images/profile_small.jpg') : asset($team['avatar'])}}" class="img-responsive">
+              <img src="{{ (empty($team['avatar']))? asset('images/profile_small.jpg') : asset('storage/'.$team['avatar'])}}" class="img-responsive">
               <br>
               <p class="small">
                 {{ $team['description']}}

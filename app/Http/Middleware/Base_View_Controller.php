@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Model\user\User;
-use Closure, Session, Route;
+use Closure, Session, Route, JWTAuth;
 
 class Base_View_Controller
 {

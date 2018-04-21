@@ -1,4 +1,4 @@
-@extends('admin/app')
+@extends('user/dashboard')
 
 @section('body_color', 'gray-bg')
 
