@@ -25,6 +25,7 @@ class AchievementsTableSeeder extends Seeder
           'team_id' => $teamKey[$i - 1]->id,
           'images' => $faker->imageUrl(640, 480, 'nature'),
           'description' => $faker->paragraph(mt_rand(5,15)),
+          'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
           'level' => $faker->randomElement([1, 2, 3, 4])
         ]);
       }

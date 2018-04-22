@@ -9,6 +9,7 @@ use App\Model\Users\User;
 use App\Model\Teams\Coaches;
 use App\Model\Teams\Teams;
 use App\Model\Teams\Athletes;
+use App\Model\Teams\Achievements;
 use App\Model\Sports\Position_types;
 use App\Http\Controllers\View\baseViewController;
 
@@ -42,7 +43,6 @@ class C_dashBoard extends Controller
       }
     }
     $form = Teams::initialize();
-    // echo json_encode($form);exit;
     return view('user/dashboard/d_home', compact('data','user', 'coach','collectAthlete','team', 'collectTeam','form'));
   }
 
@@ -65,7 +65,8 @@ class C_dashBoard extends Controller
     foreach ($athlete as $key) {
       $collectAthlete[$count++] = Athletes::with(['position_type'])->findOrFail($key->id);
     }
-    return view('user/dashboard/d_home', compact('data','user', 'collectAthlete','team', 'collectTeam'));
+    $form = Teams::initialize();
+    return view('user/dashboard/d_home', compact('data','user', 'coach','collectAthlete','team', 'collectTeam','form'));
   }
 
   public function teamDetail($team_id)
@@ -83,14 +84,19 @@ class C_dashBoard extends Controller
     $collectTeam = Teams::where('coach_id', $coach->id)->get();
     $team = Teams::where('id',$team_id)->first();
     $athlete = Teams::find($team_id)->athlete;
+    $achievement = Teams::findOrFail($team_id)->achievement;
     $collectAthlete = [];
     $count = 0;
     foreach ($athlete as $key) {
       $collectAthlete[$count++] = Athletes::with(['position_type'])->findOrFail($key->id);
     }
-
+    $form_team = Teams::initialize();
+    $form_athlete = Athletes::initialize();
+    $form_achievement = Achievements::initialize();
+    $position = Coaches::find($coach->id)->sport->position_type;
     $data['header_title'] = $team['name'];
-    return view('user/dashboard/d_teamDetail', compact('data','user', 'collectAthlete','team', 'collectTeam'));
+    return view('user/dashboard/d_teamDetail', compact('data','user', 'coach','collectAthlete','team', 'collectTeam',
+    'form_team','form_athlete','position','form_achievement','achievement'));
   }
 
   public function athlete($team_id, $athlete_id)

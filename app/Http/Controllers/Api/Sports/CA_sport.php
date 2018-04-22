@@ -32,7 +32,6 @@ class CA_sport extends Controller
 
   public function store(Request $request)
   {
-
     $this->validate($request,[
       'user_id' => 'required',
       'sport_id' => 'required',

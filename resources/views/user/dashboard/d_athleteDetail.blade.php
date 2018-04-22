@@ -25,7 +25,7 @@
                       <dl class="dl-horizontal">
                         <dt>Status:</dt>
                         <dd>
-                          @if ($user->status->name === "active")
+                          @if ($athlete['player_status'] === "active")
                             <span class='label label-primary'>Active</span>
                           @else
                             <span class='label label-default'>In-active</span>
@@ -163,7 +163,7 @@
           <div class="col-lg-3">
             <div class="wrapper wrapper-content project-manager">
               <h4>{{$athlete['fullname']}}</h4>
-              <img src="{{ (empty($athlete['avatar']))? asset('images/profile_small.jpg') : asset($athlete['avatar'])}}" class="img-responsive">
+              <img src="{{ (empty($athlete['avatar']))? asset('images/profile_small.jpg') : asset('storage/'.$athlete['avatar'])}}" class="img-responsive">
               <br>
               <p class="small font-bold">
                 <span><i class="fa fa-birthday-cake text-primary"></i> {{ empty($athlete['bod']) ? '-' : $athlete['bod']}}</span>

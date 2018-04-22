@@ -21,8 +21,8 @@ class CreateAthletesTable extends Migration
           $table->foreign('position_type_id')->references('id')->on('position_types')->onDelete('set null')->onUpdate('cascade');
           $table->string('fullname')->nullable();
           $table->enum('gender', ['man', 'woman']);
-          $table->string('avatar')->nullable();
-          $table->string('address')->nullable();
+          $table->text('avatar')->nullable();
+          $table->text('address')->nullable();
           $table->string('bod')->nullable();
           $table->string('phone_number')->unique();
           $table->integer('player_number')->nullable();

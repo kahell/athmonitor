@@ -14,14 +14,8 @@
                       <span class="clear">
                         <span class="block m-t-xs"> <strong class="font-bold">{{ $user['fullname'] }}</strong>
                         </span>
-                        <span class="text-muted text-xs block">{{ $team['name'] }} <b class="caret"></b></span>
                       </span>
                     </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                      @foreach ($collectTeam as $key)
-                        <li><a href="{{url('users/'.$key->id)}}">{{$key->name}}</a></li>
-                      @endforeach
-                    </ul>
                 </div>
             </li>
             <li class="{{ ($data['parent_nav'] == "home") ? "active" : "" }}">

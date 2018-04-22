@@ -16,9 +16,9 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) {
           $table->bigIncrements('id');
           $table->string('name');
-          $table->string('avatar')->nullable();
+          $table->text('avatar')->nullable();
           $table->text('description')->nullable();
-          $table->string('address')->nullable();
+          $table->text('address')->nullable();
           $table->string('city')->nullable();
           $table->string('province')->nullable();
           $table->bigInteger('coach_id')->unsigned()->nullable()->index();

@@ -24,6 +24,7 @@ class CreateAchievementsTable extends Migration
           $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
           $table->text('description')->nullable();
           $table->string('images')->nullable();
+          $table->string('date')->nullable();
           $table->enum('level', ['local', 'regional', 'national', 'international']);
           $table->timestamps();
         });

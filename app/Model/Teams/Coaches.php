@@ -5,7 +5,7 @@ namespace App\Model\Teams;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Users\User;
 use App\Model\Teams\Teams;
-use App\Model\Teams\Sports;
+use App\Model\Sports\Sports;
 
 class Coaches extends Model
 {

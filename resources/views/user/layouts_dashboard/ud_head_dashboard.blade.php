@@ -45,10 +45,13 @@
 <!-- Ladda Button-->
 <link href="{{asset('admin/css/plugins/ladda/ladda-themeless.min.css')}}" rel="stylesheet">
 
+@section('css-style')
+@show
+
 <script type="text/javascript">
 var _URL = {!! json_encode(url('/')) !!} + '/';
 let headers={
     Authorization : 'Bearer '+ localStorage.getItem('token'),
-    'Content-Type':'application/x-www-form-urlencoded',
+    'Content-Type':'application/x-www-form-urlencoded'
 };
 </script>

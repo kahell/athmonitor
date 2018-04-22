@@ -56,6 +56,15 @@ class CA_team extends Controller
         ], 200);
       }
 
+      // Validation Image because Image is required when store
+      if(!$request->hasFile('file')){
+        return response()->json([
+          'status'=> false,
+          'data' => null,
+          'message' => "Image is required."
+        ], 200);
+      }
+
       // Insert Teams
       $team = new Teams();
       $team->name = $request->name;
@@ -69,13 +78,13 @@ class CA_team extends Controller
       // Insert Image
       if($request->hasFile('file')){
         $file = $request->file('file');
-        if (!Storage::exists('public/images/team')) {
-            Storage::makeDirectory('public/images/team', 0777);
+        if (!Storage::exists('public/images/team/'.$team->id)) {
+            Storage::makeDirectory('public/images/team/'.$team->id, 0777);
         }
-        $path = Storage::putFile('public/images/team', $request->file('file'));
+        $path = Storage::putFile('public/images/team/'.$team->id, $request->file('file'));
         $path = explode('/',$path);
         $insertFile = Teams::where('id',$team->id)->first();
-        $insertFile->avatar = $path[1] . '/' . $path[2] . '/' . $path[3];
+        $insertFile->avatar = $path[1] . '/' . $path[2] . '/' . $path[3]. '/' . $path[4] ;
         $insertFile->save();
       }
 
@@ -102,8 +111,7 @@ class CA_team extends Controller
           'team' => $team,
           'athlete' => $athlete,
           'achievement' => $achievement,
-          'activity' => $activity,
-          'token' => $this->refresh()
+          'activity' => $activity
         ],
         'message' => "Your team."
       ], 200);
@@ -141,23 +149,57 @@ class CA_team extends Controller
           'message' => $validator->errors()->first()
         ], 200);
       }
-      // Update Data
+
       try {
+        // Update Data
         $team = Teams::findOrFail($id);
         $team->update($request->all());
+
+        // Delete Image Team Before if there an image files
+        if($request->hasFile('file')){
+          $pathImage = 'public/'.$team['avatar'];
+          Storage::delete($pathImage);
+          //Insert new Image
+          $file = $request->file('file');
+          if (!Storage::exists('public/images/team')) {
+              Storage::makeDirectory('public/images/team', 0777);
+          }
+          $path = Storage::putFile('public/images/team', $request->file('file'));
+          $path = explode('/',$path);
+          $insertFile = Teams::where('id',$team->id)->first();
+          $insertFile->avatar = $path[1] . '/' . $path[2] . '/' . $path[3];
+          $insertFile->save();
+        }
         return response()->json([
           'status'=> true,
-          'data' => null,
+          'data' => Teams::findOrFail($id),
           'message' => "Update team successfully!"
         ], 200);
       } catch (\Exception $e) {
-        return $this->displayDataNotFound();
+        return response()->json([
+          'status'=> false,
+          'data' => null,
+          'message' => $e
+        ], 200);
       }
 
     }
 
     public function destroy($id)
     {
-
+      try {
+        $team = Teams::findOrFail($id);
+        // Delete images on Storage
+        $pathImage = 'public/'.$team['avatar'];
+        Storage::delete($pathImage);
+        $team->delete();
+        return response()->json([
+          'status'=> true,
+          'data' => null,
+          'message' => "Delete team successfully!"
+        ], 200);
+      } catch (\Exception $e) {
+        return $this->displayDataNotFound();
+      }
     }
 }

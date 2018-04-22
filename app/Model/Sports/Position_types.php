@@ -7,6 +7,7 @@ use App\Support\FilterPaginateOrder;
 use App\Model\Sports\Sports;
 use App\Model\Sports\Parameters;
 use App\Model\Teams\Athletes;
+use App\Rules\ValidSport;
 
 class Position_types extends Model
 {
@@ -17,8 +18,15 @@ class Position_types extends Model
 
   public static function initialize(){
     return [
-      'name' => '',
-      'sport_id' => 'select'
+      'name' => 'Name',
+      'sport_id' => 'Sport'
+    ];
+  }
+
+  public static function formValidation(){
+    return [
+      'name' => 'required|min:4|max:255',
+      'sport_id' => ['required', new ValidSport]
     ];
   }
 
