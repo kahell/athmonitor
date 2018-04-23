@@ -17,7 +17,7 @@ class CreateActivitiesTable extends Migration
           $table->bigIncrements('id');
           $table->bigInteger('team_id')->unsigned()->nullable();
           $table->foreign('team_id')->references('id')->on('teams')->onDelete('set null')->onUpdate('cascade');
-          $table->dateTime('time')->nullable();
+          $table->string('time')->nullable();
           $table->string('place');
           $table->enum('type', ['exercise', 'championship','sparing']);
           $table->enum('status', ['active', 'inactive']);

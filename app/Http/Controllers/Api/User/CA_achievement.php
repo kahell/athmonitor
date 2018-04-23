@@ -112,7 +112,7 @@ class CA_achievement extends Controller
       'data' => [
         'achievement' => Achievements::findOrFail($achievement->id)
       ],
-      'message' => "Add athlete successfully!"
+      'message' => "Add achievement successfully!"
     ], 200);
   }
 
@@ -125,7 +125,7 @@ class CA_achievement extends Controller
         'data' => [
           'achiement' => Achievements::findOrFail($id)
         ],
-        'message' => "Your Athlete."
+        'message' => "Your achievement."
       ], 200);
     } catch (\Exception $e) {
       // Return
@@ -146,7 +146,7 @@ class CA_achievement extends Controller
       'data' => [
         'form' => Achievements::initialize()
       ],
-      'message' => "Edit your achiement."
+      'message' => "Edit your achievement."
     ], 200);
   }
 
@@ -211,7 +211,7 @@ class CA_achievement extends Controller
       return response()->json([
         'status'=> true,
         'data' => Achievements::findOrFail($id),
-        'message' => "Update athlete successfully!"
+        'message' => "Update achievement successfully!"
       ], 200);
     } catch (\Exception $e) {
       return response()->json([

@@ -17,14 +17,16 @@ use Illuminate\Database\Eloquent\Model;
 class Athletes extends Model
 {
   use FilterPaginateOrder;
-  protected $fillable = ['team_id','position_type_id','fullname','gender','avatar','address','bod','phone_number','player_number','player_status'];
+  protected $fillable = ['team_id','position_type_id','fullname','gender','avatar','address','bod','phone_number','player_number','player_status','player_status_activity'];
   protected $hidden = ['created_at', 'updated_at'];
-  protected $filter = ['id','team_id','position_type_id','fullname','gender','avatar','address','bod','phone_number','player_number','player_status'];
+  protected $filter = ['id','team_id','position_type_id','fullname','gender','avatar','address','bod','phone_number','player_number','player_status','player_status_activity'];
 
   public static function initialize(){
     return [
       'team_id' => "Team",'position_type_id' => "Position",'fullname' => "Name",
-      'gender' => "Gender", 'avatar' => "Avatar", 'address' => 'Address', 'bod' => 'Date of Birth', 'phone_number' => 'Phone Number', 'player_number' => 'Player Number', 'player_status' => "Status"
+      'gender' => "Gender", 'avatar' => "Avatar", 'address' => 'Address', 'bod' => 'Date of Birth',
+      'phone_number' => 'Phone Number', 'player_number' => 'Player Number', 'player_status' => "Status",
+      'player_status_activity' => 'Status Activity'
     ];
   }
 
@@ -39,7 +41,8 @@ class Athletes extends Model
       'player_status' => 'required',
       'phone_number' => ['required', new ValidPhone],
       'team_id' => ['required', new ValidTeam],
-      'position_type_id' => ['required', new ValidPositionType]
+      'position_type_id' => ['required', new ValidPositionType],
+      'player_status_activity' => 'required'
     ];
   }
 

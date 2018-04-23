@@ -10,6 +10,7 @@ use App\Model\Teams\Coaches;
 use App\Model\Teams\Teams;
 use App\Model\Teams\Athletes;
 use App\Model\Teams\Achievements;
+use App\Model\Teams\Activities;
 use App\Model\Sports\Position_types;
 use App\Http\Controllers\View\baseViewController;
 
@@ -135,8 +136,8 @@ class C_dashBoard extends Controller
     foreach ($athlete as $key) {
       $collectAthlete[$count++] = Athletes::with(['position_type'])->findOrFail($key->id);
     }
-    $activity = Activites::where(['team_id'=> $team_id, 'status' => 1])->get();
+    $activity = Activities::where(['team_id'=> $team_id, 'status' => 1])->get();
     $data['header_title'] = "monitor";
-    return view('user/dashboard/d_monitor', compact('data','user', 'collectAthlete','team', 'collectTeam'));
+    return view('user/dashboard/d_monitor', compact('data','user','collectAthlete','team', 'collectTeam','activity'));
   }
 }

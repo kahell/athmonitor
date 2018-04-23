@@ -27,6 +27,7 @@ class CreateAthletesTable extends Migration
           $table->string('phone_number')->unique();
           $table->integer('player_number')->nullable();
           $table->enum('player_status', ['active', 'inactive']);
+          $table->enum('player_status_activity', ['done', 'pending']);
           $table->timestamps();
         });
     }

@@ -41,4 +41,11 @@ Route::group(['namespace' => 'Api\User'], function(){
   Route::get('achievements/{achievement}','CA_achievement@show');
   Route::get('achievements/{achievement}/edit','CA_achievement@edit');
   Route::delete('achievements/{achievement}','CA_achievement@destroy');
+  /* Activity */
+  Route::post('activities','CA_activity@store');
+  Route::post('activities/update/{activity}','CA_activity@update');
+  Route::get('activities','CA_activity@index');
+  Route::get('activities/{activity}','CA_activity@show');
+  Route::get('activities/{activity}/edit','CA_activity@edit');
+  Route::delete('activities/{activity}','CA_activity@destroy');
 });

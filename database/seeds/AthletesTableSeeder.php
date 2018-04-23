@@ -30,7 +30,8 @@ class AthletesTableSeeder extends Seeder
         'bod' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'phone_number' => $faker->phoneNumber,
         'player_number' => $faker->numberBetween($min = 1, $max = 100),
-        'player_status' => $faker->randomElement([1, 2])
+        'player_status' => $faker->randomElement([1, 2]),
+        'player_status_activity' => 2
       ]);
     }
   }

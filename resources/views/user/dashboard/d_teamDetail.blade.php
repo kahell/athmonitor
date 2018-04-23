@@ -88,7 +88,7 @@
                                 </div>
                               @else
                                 <div class="table-responsive">
-                                  <table class="footable table table-stripped" id="athlete_table" data-paging="true" data-filtering="true" data-sorting="true" data-editing-allow-edit="false">
+                                  <table class="footable table table-stripped" id="athlete_table" data-paging="true" data-page-size="10" data-filtering="true" data-sorting="true" data-editing-allow-edit="false">
                                     <thead>
                                       <tr>
                                         <th>Avatar</th>
@@ -212,42 +212,44 @@
 
                         <!-- Form for athlete -->
                         @foreach ($form_athlete as $key => $value)
-                          <div class="form-group" id="form_player_{{$key}}">
-                            <label>{{ucfirst($value)}}</label>
-                            @if ($key === "avatar")
-                              <input id="input_player_{{ $key }}" name="input_player_{{ $key }}" type="file" class="form-control">
-                            @elseif ($key === "description")
-                              <textarea id="input_player_{{ $key }}" name="input_player_{{ $key }}" placeholder="Enter {{ $key }}" class="form-control"></textarea>
-                            @elseif ($key === "address")
-                              <textarea id="input_player_{{ $key }}" name="input_player_{{ $key }}" placeholder="Enter {{ $key }}" class="form-control"></textarea>
-                            @elseif ($key == "gender")
-                              <select id="input_player_{{ $key }}" name="input_player_{{ $key }}" class="form-control">
-                                <option value='man' selected>Man</option>
-                                <option value='woman' >Woman</option>
-                              </select>
-                            @elseif ($key === "position_type_id")
-                              <select id="input_player_{{ $key }}" name="input_player_{{ $key }}" class="form-control">
-                                <option value='null' selected>Please select position</option>
-                                @foreach ($position as $key)
-                                  <option value='{{$key->id}}'>{{$key->name}}</option>
-                                @endforeach
-                              </select>
-                            @elseif ($key === "player_status")
-                              <select id="input_player_{{ $key }}" name="input_player_{{ $key }}" class="form-control">
-                                <option value='active' selected>Active</option>
-                                <option value='inactive' >In-Active</option>
-                              </select>
-                            @elseif ($key === "bod")
-                              <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input id="input_player_{{ $key }}" name="input_player_{{ $key }}" type="text" class="form-control" placeholder="Enter {{ $key }}">
-                              </div>
-                            @elseif ($key === "team_id")
-                              <input id="input_player_{{ $key }}" name="input_player_{{ $key }}" type="text" placeholder="Enter {{ $key }}" value="{{ $team['id'] }}" class="form-control" disabled>
-                            @else
-                              <input id="input_player_{{ $key }}" name="input_player_{{ $key }}" type="text" placeholder="Enter {{ $key }}" class="form-control">
-                            @endif
-                          </div>
+                          @if ($key != "player_status_activity")
+                            <div class="form-group" id="form_player_{{$key}}">
+                              <label>{{ucfirst($value)}}</label>
+                              @if ($key === "avatar")
+                                <input id="input_player_{{ $key }}" name="input_player_{{ $key }}" type="file" class="form-control">
+                              @elseif ($key === "description")
+                                <textarea id="input_player_{{ $key }}" name="input_player_{{ $key }}" placeholder="Enter {{ $key }}" class="form-control"></textarea>
+                              @elseif ($key === "address")
+                                <textarea id="input_player_{{ $key }}" name="input_player_{{ $key }}" placeholder="Enter {{ $key }}" class="form-control"></textarea>
+                              @elseif ($key == "gender")
+                                <select id="input_player_{{ $key }}" name="input_player_{{ $key }}" class="form-control">
+                                  <option value='man' selected>Man</option>
+                                  <option value='woman' >Woman</option>
+                                </select>
+                              @elseif ($key === "position_type_id")
+                                <select id="input_player_{{ $key }}" name="input_player_{{ $key }}" class="form-control">
+                                  <option value='null' selected>Please select position</option>
+                                  @foreach ($position as $key)
+                                    <option value='{{$key->id}}'>{{$key->name}}</option>
+                                  @endforeach
+                                </select>
+                              @elseif ($key === "player_status")
+                                <select id="input_player_{{ $key }}" name="input_player_{{ $key }}" class="form-control">
+                                  <option value='active' selected>Active</option>
+                                  <option value='inactive' >In-Active</option>
+                                </select>
+                              @elseif ($key === "bod")
+                                <div class="input-group date">
+                                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                  <input id="input_player_{{ $key }}" name="input_player_{{ $key }}" type="text" class="form-control" placeholder="Enter {{ $key }}">
+                                </div>
+                              @elseif ($key === "team_id")
+                                <input id="input_player_{{ $key }}" name="input_player_{{ $key }}" type="text" placeholder="Enter {{ $key }}" value="{{ $team['id'] }}" class="form-control" disabled>
+                              @else
+                                <input id="input_player_{{ $key }}" name="input_player_{{ $key }}" type="text" placeholder="Enter {{ $key }}" class="form-control">
+                              @endif
+                            </div>
+                          @endif
                         @endforeach
                         <!-- End of Athlete -->
 
@@ -471,6 +473,7 @@
        $('.fa-plus-square.modal-icon').hide();
 
        $('#form_achievement_name').hide();
+       $('#form_achievement_description').hide();
        $('#form_achievement_images').hide();
        $('#form_achievement_level').hide();
        $('#form_achievement_date').hide();
@@ -557,6 +560,7 @@
        $('#form_achievement_images').hide();
        $('#form_achievement_level').hide();
        $('#form_achievement_date').hide();
+       $('#form_achievement_description').hide();
        // $('#form_achievement_coach_id').hide(); // hideen from view
        // $('#form_achievement_athlete_id').hide(); // hideen from view
        $('#form_achievement_team_id').hide();
@@ -626,6 +630,7 @@
        $('#form_achievement_images').show();
        $('#form_achievement_level').show();
        $('#form_achievement_date').show();
+       $('#form_achievement_description').show();
        // $('#form_achievement_coach_id').show(); // hideen from view
        // $('#form_achievement_athlete_id').show(); // hideen from view
        $('#form_achievement_team_id').show();
