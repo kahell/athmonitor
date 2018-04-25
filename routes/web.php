@@ -34,4 +34,5 @@ Route::group(['namespace' => 'View\User'], function(){
   Route::get("users/{team}/team",'C_dashboard@teamDetail');
   Route::get("users/{team}/athlete/{athlete}",'C_dashboard@athlete');
   Route::get("users/{team}/monitor",'C_dashboard@monitor');
+  Route::get("users/{team}/monitor/{athlete}",'C_dashboard@scoring');
 });

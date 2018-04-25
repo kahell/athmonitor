@@ -489,7 +489,7 @@
        $('#input_player_bod').val('');
        $('#input_player_address').val('');
 
-       $('#modal').modal({backdrop: 'static', keyboard: false})
+       $('#modal').modal({backdrop: 'static', keyboard: false});
        $('#modal').modal('show');
     });
 
@@ -567,7 +567,7 @@
 
        $('.fa-edit.modal-icon').hide();
        $('.fa-plus-square.modal-icon').show();
-       $('#modal').modal({backdrop: 'static', keyboard: false})
+       $('#modal').modal({backdrop: 'static', keyboard: false});
        $('#modal').modal('show');
     });
 
@@ -643,7 +643,7 @@
 
        $('.fa-edit.modal-icon').hide();
        $('.fa-plus-square.modal-icon').show();
-       $('#modal').modal({backdrop: 'static', keyboard: false})
+       $('#modal').modal({backdrop: 'static', keyboard: false});
        $('#modal').modal('show');
     });
 

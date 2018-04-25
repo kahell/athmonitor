@@ -18,6 +18,13 @@ Route::group(['namespace' => 'Api\Sports'], function(){
   Route::get('position/{position_type}','CA_position_type@show');
   Route::get('position/{position_type}/edit','CA_position_type@edit');
   Route::delete('position/{position_type}','CA_position_type@destroy');
+  /* Parameter */
+  Route::post('parameters','CA_parameter@store');
+  Route::post('parameters/update/{parameter}','CA_parameter@update');
+  Route::get('parameters','CA_parameter@index');
+  Route::get('parameters/{parameter}','CA_parameter@show');
+  Route::get('parameters/{parameter}/edit','CA_parameter@edit');
+  Route::delete('parameters/{parameter}','CA_parameter@destroy');
 });
 Route::group(['namespace' => 'Api\User'], function(){
   /* Team */
@@ -48,4 +55,12 @@ Route::group(['namespace' => 'Api\User'], function(){
   Route::get('activities/{activity}','CA_activity@show');
   Route::get('activities/{activity}/edit','CA_activity@edit');
   Route::delete('activities/{activity}','CA_activity@destroy');
+  /* Score */
+  Route::post('scores','CA_score@store');
+  Route::post('scores/update/{score}','CA_score@update');
+  Route::post('scores/input','CA_score@input');
+  Route::get('scores','CA_score@index');
+  Route::get('scores/{score}','CA_score@show');
+  Route::get('scores/{score}/edit','CA_score@edit');
+  Route::delete('scores/{score}','CA_score@destroy');
 });

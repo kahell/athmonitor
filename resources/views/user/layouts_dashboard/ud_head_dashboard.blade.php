@@ -44,6 +44,10 @@
 <link href="{{asset('admin/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
 <!-- Ladda Button-->
 <link href="{{asset('admin/css/plugins/ladda/ladda-themeless.min.css')}}" rel="stylesheet">
+<!-- NO UI Slider -->
+{{-- <link href="{{asset('admin/css/plugins/nouslider/jquery.nouislider.css')}}" rel="stylesheet"> --}}
+<link href="{{asset('admin/css/plugins/nouslider/nouislider.min.css')}}" rel="stylesheet">
+
 
 @section('css-style')
 @show

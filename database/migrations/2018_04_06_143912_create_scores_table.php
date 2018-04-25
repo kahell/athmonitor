@@ -17,7 +17,7 @@ class CreateScoresTable extends Migration
           $table->bigIncrements('id');
           $table->bigInteger('parameter_id')->unsigned()->nullable();
           $table->foreign('parameter_id')->references('id')->on('parameters')->onDelete('set null')->onUpdate('cascade');
-          $table->integer('value');
+          $table->double('value');
           $table->bigInteger('athlete_id')->unsigned()->nullable();
           $table->foreign('athlete_id')->references('id')->on('athletes')->onDelete('cascade')->onUpdate('cascade');
           $table->bigInteger('activity_id')->unsigned()->nullable();

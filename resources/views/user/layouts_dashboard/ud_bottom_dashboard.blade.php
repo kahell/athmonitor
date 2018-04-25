@@ -59,3 +59,6 @@
 <script src="{{asset('admin/js/plugins/flot/jquery.flot.pie.js')}}"></script>
 <script src="{{asset('admin/js/plugins/flot/jquery.flot.symbol.js')}}"></script>
 <script src="{{asset('admin/js/plugins/flot/jquery.flot.time.js')}}"></script>
+<!-- NouSlider -->
+{{-- <script src="{{asset('admin/js/plugins/nouslider/jquery.nouislider.min.js')}}"></script> --}}
+<script src="{{asset('admin/js/plugins/nouslider/nouislider.min.js')}}"></script>

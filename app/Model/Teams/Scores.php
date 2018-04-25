@@ -7,6 +7,7 @@ use App\Model\Sports\Parameters;
 use App\Model\Teams\Athletes;
 use App\Model\Teams\Activities;
 use App\Support\FilterPaginateOrder;
+use App\Rules\ValidParameter;
 
 class Scores extends Model
 {
@@ -17,16 +18,25 @@ class Scores extends Model
 
   public static function initialize(){
     return [
-      'parameter_id' => 'select',
+      'parameter_id' => 'Paramter',
       'value' => '',
-      'athlete_id' => 'select',
-      'activity_id' => 'select'
+      'athlete_id' => 'Athlete',
+      'activity_id' => 'Activity'
+    ];
+  }
+
+  public static function formValidation(){
+    return [
+      'parameter_id' => ['required', new ValidParameter],
+      'value' => 'required',
+      'athlete_id' => ['required', new ValidAthlete],
+      'activity_id' => ['required', new ValidActivity]
     ];
   }
 
   public function parameter()
   {
-    return $this->hasOne(Parameters::class);
+    return $this->belongsTo(Parameters::class);
   }
 
   public function athlete()

@@ -30,4 +30,8 @@ class Sports extends Model
     {
         return $this->hasMany(Position_types::class,'sport_id');
     }
+    public function parameter()
+    {
+        return $this->hasMany(Parameters::class,'sport_id');
+    }
 }
