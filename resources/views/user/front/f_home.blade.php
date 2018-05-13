@@ -1,7 +1,7 @@
 @extends('user/front')
 
 @section('main_content')
-  <section id="athmo-home" data-section="home" style="background-image: url({{asset('user/images/full_image_2.jpg')}});" data-stellar-background-ratio="0.5">
+  <section id="athmo-home" data-section="home" style="background-image: url({{asset('user/images/full_image_1.jpg')}});" data-stellar-background-ratio="0.5">
     <div class="gradient"></div>
     <div class="container">
       <div class="text-wrap">
@@ -26,9 +26,9 @@
           <div class="overlay"></div>
           <div class="athmo-text">
             <i class="athmo-intro-icon icon-bulb"></i>
-            <h2>Plan</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            <p><a href="#" class="btn btn-primary">Get In Touch</a></p>
+            <h2>Monitoring & Statistic</h2>
+            <p>You don't need paper again to input & calculate.</p>
+            {{-- <p><a href="#" class="btn btn-primary">Get In Touch</a></p> --}}
           </div>
         </div>
         <div class="athmo-block to-animate" style="background-image: url({{asset('user/images/img_8.jpg')}});">
@@ -36,9 +36,9 @@
           <div class="overlay"></div>
           <div class="athmo-text">
             <i class="athmo-intro-icon icon-wrench"></i>
-            <h2>Develop</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            <p><a href="#" class="btn btn-primary">Click Me</a></p>
+            <h2>Team Management</h2>
+            <p>We are promise you dont stress to manage team because our app is easy to use!.</p>
+            {{-- <p><a href="#" class="btn btn-primary">Click Me</a></p> --}}
           </div>
         </div>
         <div class="athmo-block to-animate" style="background-image: url({{asset('user/images/img_10.jpg')}});">
@@ -46,21 +46,21 @@
           <div class="overlay"></div>
           <div class="athmo-text">
             <i class="athmo-intro-icon icon-rocket"></i>
-            <h2>Launch</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            <p><a href="#" class="btn btn-primary">Why Us?</a></p>
+            <h2>Scoring Athlete</h2>
+            <p>Every single activity is important to make a good decision in the future!.</p>
+            {{-- <p><a href="#" class="btn btn-primary">Why Us?</a></p> --}}
           </div>
         </div>
       </div>
-      <div class="row watch-video text-center to-animate">
+      {{-- <div class="row watch-video text-center to-animate">
         <span>Watch the video</span>
 
         <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo btn-video"><i class="icon-play2"></i></a>
-      </div>
+      </div> --}}
     </div>
   </section>
 
-  <section id="athmo-work" data-section="work">
+  {{-- <section id="athmo-work" data-section="work">
     <div class="container">
       <div class="row">
         <div class="col-md-12 section-heading text-center">
@@ -173,7 +173,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <section id="athmo-testimonials" data-section="testimonials">
     <div class="container">
@@ -182,7 +182,7 @@
           <h2 class="to-animate">Testimonials</h2>
           <div class="row">
             <div class="col-md-8 col-md-offset-2 subtext to-animate">
-              <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+              <h3>This our success coach who use our app.</h3>
             </div>
           </div>
         </div>
@@ -191,12 +191,12 @@
         <div class="col-md-4">
           <div class="box-testimony">
             <blockquote class="to-animate-2">
-              <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+              <p>&ldquo;Athmonitor sangat membantu saya dalam mengambil keputusan dalam tim.&rdquo;</p>
             </blockquote>
             <div class="author to-animate">
-              <figure><img src="{{asset('user/images/person1.jpg')}}" alt="Person"></figure>
+              <figure><img style="width:60px; height: 60px;" src="{{asset('user/images/person1.jpg')}}" alt="Person"></figure>
               <p>
-              Jean Doe, CEO <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+              Widya<span class="subtext">Pelatih Renang</span>
               </p>
             </div>
           </div>
@@ -204,12 +204,12 @@
         <div class="col-md-4">
           <div class="box-testimony">
             <blockquote class="to-animate-2">
-              <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+              <p>&ldquo;Sebuah inovasi baru didunia olaharaga.&rdquo;</p>
             </blockquote>
             <div class="author to-animate">
-              <figure><img src="{{asset('user/images/person2.jpg')}}" alt="Person"></figure>
+              <figure><img style="width:60px; height: 60px;" src="{{asset('user/images/person2.jpg')}}" alt="Person"></figure>
               <p>
-              John Doe, Senior UI <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+              Rania<span class="subtext">Mantan Pelatih Futsal</span>
               </p>
             </div>
           </div>
@@ -218,12 +218,12 @@
         <div class="col-md-4">
           <div class="box-testimony">
             <blockquote class="to-animate-2">
-              <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. &rdquo;</p>
+              <p>&ldquo;Sangat bermanfaat bagi saya dalam mencatat setiap pertandingan basket. &rdquo;</p>
             </blockquote>
             <div class="author to-animate">
-              <figure><img src="{{asset('user/images/person3.jpg')}}" alt="Person"></figure>
+              <figure><img style="width:60px; height: 60px;" src="{{asset('user/images/person3.jpg')}}" alt="Person"></figure>
               <p>
-              Chris Nash, Director <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+              Cuhox <span class="subtext">Pelatih Basket</span>
               </p>
             </div>
           </div>
@@ -240,24 +240,29 @@
           <h2 class=" left-border to-animate">Services</h2>
           <div class="row">
             <div class="col-md-8 subtext to-animate">
-              <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+              <h3>This our services.</h3>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 col-sm-6 athmo-service to-animate">
-          <i class="icon to-animate-2 icon-anchor"></i>
-          <h3>Brand &amp; Strategy</h3>
+        <div class="col-md-4 col-sm-4 athmo-service to-animate">
+          <i class="icon to-animate-2 icon-monitor"></i>
+          <h3>Monitoring & Statistic</h3>
           <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
         </div>
-        <div class="col-md-6 col-sm-6 athmo-service to-animate">
-          <i class="icon to-animate-2 icon-layers2"></i>
-          <h3>Web &amp; Interface</h3>
+        <div class="col-md-4 col-sm-4 athmo-service to-animate">
+          <i class="icon to-animate-2 icon-users"></i>
+          <h3>Team Management</h3>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+        </div>
+        <div class="col-md-4 col-sm-4 athmo-service to-animate">
+          <i class="icon to-animate-2 icon-user"></i>
+          <h3>Athlete Management</h3>
           <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
         </div>
 
-        <div class="clearfix visible-sm-block"></div>
+        {{-- <div class="clearfix visible-sm-block"></div>
 
         <div class="col-md-6 col-sm-6 athmo-service to-animate">
           <i class="icon to-animate-2 icon-video2"></i>
@@ -268,7 +273,7 @@
           <i class="icon to-animate-2 icon-monitor"></i>
           <h3>CMS &amp; eCommerce</h3>
           <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
-        </div>
+        </div> --}}
 
       </div>
     </div>
@@ -289,7 +294,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="athmo-person text-center to-animate">
-            <figure><img src="{{asset('user/images/person1.jpg')}}" alt="Image"></figure>
+            <figure><img style="width:120px; height:120px" src="{{asset('user/images/person1.jpg')}}" alt="Image"></figure>
             <h3>Jean Smith</h3>
             <span class="athmo-position">Web Designer</span>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
@@ -302,7 +307,7 @@
         </div>
         <div class="col-md-4">
           <div class="athmo-person text-center to-animate">
-            <figure><img src="{{asset('user/images/person2.jpg')}}" alt="Image"></figure>
+            <figure><img style="width:120px; height:120px" src="{{asset('user/images/person2.jpg')}}" alt="Image"></figure>
             <h3>Rob Smith</h3>
             <span class="athmo-position">Web Developer</span>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
@@ -315,7 +320,7 @@
         </div>
         <div class="col-md-4">
           <div class="athmo-person text-center to-animate">
-            <figure><img src="{{asset('user/images/person3.jpg')}}" alt="Image"></figure>
+            <figure><img style="width:120px; height:120px" src="{{asset('user/images/person3.jpg')}}" alt="Image"></figure>
             <h3>Larry Ben</h3>
             <span class="athmo-position">Web Designer</span>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
@@ -339,34 +344,34 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="athmo-counter to-animate">
             <i class="athmo-counter-icon icon-briefcase to-animate-2"></i>
-            <span class="athmo-counter-number js-counter" data-from="0" data-to="89" data-speed="5000" data-refresh-interval="50">89</span>
-            <span class="athmo-counter-label">Finished projects</span>
+            <span class="athmo-counter-number js-counter" data-from="0" data-to="2" data-speed="5000" data-refresh-interval="50">89</span>
+            <span class="athmo-counter-label">Coaches</span>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="athmo-counter to-animate">
             <i class="athmo-counter-icon icon-code to-animate-2"></i>
-            <span class="athmo-counter-number js-counter" data-from="0" data-to="2343409" data-speed="5000" data-refresh-interval="50">2343409</span>
-            <span class="athmo-counter-label">Line of codes</span>
+            <span class="athmo-counter-number js-counter" data-from="0" data-to="20" data-speed="5000" data-refresh-interval="50">2343409</span>
+            <span class="athmo-counter-label">Athletes</span>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="athmo-counter to-animate">
             <i class="athmo-counter-icon icon-cup to-animate-2"></i>
-            <span class="athmo-counter-number js-counter" data-from="0" data-to="1302" data-speed="5000" data-refresh-interval="50">1302</span>
-            <span class="athmo-counter-label">Cup of coffees</span>
+            <span class="athmo-counter-number js-counter" data-from="0" data-to="2" data-speed="5000" data-refresh-interval="50">1302</span>
+            <span class="athmo-counter-label">Teams</span>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        {{-- <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="athmo-counter to-animate">
             <i class="athmo-counter-icon icon-people to-animate-2"></i>
             <span class="athmo-counter-number js-counter" data-from="0" data-to="52" data-speed="5000" data-refresh-interval="50">52</span>
             <span class="athmo-counter-label">Happy clients</span>
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
   </section>

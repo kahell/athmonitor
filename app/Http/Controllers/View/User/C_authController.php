@@ -95,12 +95,12 @@ class C_authController extends Controller
     $status->isResetPass = 0;
     $status->save();
 
-    Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
-    function($mail) use ($email, $name, $subject){
-      $mail->from('hai@suitdevelopers.com', "Athmonior");
-      $mail->to($email, $name);
-      $mail->subject($subject);
-    });
+    // Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
+    // function($mail) use ($email, $name, $subject){
+    //   $mail->from('hai@suitdevelopers.com', "Athmonior");
+    //   $mail->to($email, $name);
+    //   $mail->subject($subject);
+    // });
 
     return response()
     ->json([
@@ -282,9 +282,9 @@ class C_authController extends Controller
   public function logout()
   {
     $session = Session::get('remember_token');
-    $user = User::where('remember_token', $session)->first();
-    $user->remember_token = '';
-    $user->save();
+    // $user = User::where('remember_token', $session)->first();
+    // $user->remember_token = '';
+    // $user->save();
     Session::pull('remember_token');
     return redirect('/');
   }

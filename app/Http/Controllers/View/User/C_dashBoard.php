@@ -143,6 +143,7 @@ class C_dashBoard extends Controller
     // Check or Inserted scoring
     if($activity != null){
       $scoring = Scores::where(['activity_id' => $activity->id])->get();
+
       if($scoring == "[]" && $parameter != "[]"){
         foreach ($athlete as $key) { // athlete
           foreach ($parameter as $key2) { // parameter
@@ -162,7 +163,7 @@ class C_dashBoard extends Controller
               // Check thetre is parameter in scoring or not
               $count = 0;
               foreach ($scoring as $key3) {
-                if($key3->parameter_id == $key2->id){
+                if($key3->parameter_id == $key2->id && $key3->athlete_id == $key->id){
                   $count = 1;
                 }
               }
@@ -206,8 +207,8 @@ class C_dashBoard extends Controller
       $collectAthlete[$count++] = Athletes::with(['position_type'])->findOrFail($key->id);
     }
     $activity = Activities::where(['team_id'=> $team_id, 'status' => 1])->first();
+
     $scores = Scores::with(['parameter'])->where(['activity_id'=>$activity->id,'athlete_id' => $athlete_id])->get();
-    // echo json_encode($scores);exit;
     $data['header_title'] = "scoring";
     return view('user/dashboard/d_scoring', compact('data','user','collectAthlete','team', 'collectTeam','activity','scores'));
   }

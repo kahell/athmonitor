@@ -285,7 +285,7 @@
                             <table  cellpadding='0' cellspacing='0'>
                                 <tr>
                                     <td>
-                                        <img class='img-responsive' src='{{ asset('images/header_email.png')}}'/>
+                                        <img class='img-responsive' src='https://raw.githubusercontent.com/kahell/athmonitor/master/public/images/header_email.png'/>
                                     </td>
                                 </tr>
                                 <tr>
