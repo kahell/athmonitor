@@ -18,35 +18,35 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/fav/16x16.png')}}">
 
 <!-- Main Inspia -->
-<link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/bootstrap.min.css')}}" rel="stylesheet">
 <!-- Fontawesome -->
-<link href="{{asset('admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 <!-- Style -->
-<link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/style.css')}}" rel="stylesheet">
 <!-- Toastr style -->
-<link href="{{asset('admin/css/plugins/toastr/toastr.min.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/toastr/toastr.min.css')}}" rel="stylesheet">
 <!-- Gritter -->
-<link href="{{asset('admin/js/plugins/gritter/jquery.gritter.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/js/plugins/gritter/jquery.gritter.css')}}" rel="stylesheet">
 <!-- Animate -->
-<link href="{{asset('admin/css/animate.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/animate.css')}}" rel="stylesheet">
 <!-- FooTable -->
 <!-- <link href="assets/css/plugins/footable/footable.core.css" rel="stylesheet"> -->
-<link href="{{asset('admin/css/plugins/footable/src/css/footable.standalone.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/footable/src/css/footable.standalone.css')}}" rel="stylesheet">
 <!-- DataTable -->
-<link href="{{asset('admin/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
 <!-- sweetalert -->
-<link href="{{asset('admin/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
 <!-- Chosen -->
-<link href="{{asset('admin/css/plugins/chosen/chosen.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/chosen/chosen.css')}}" rel="stylesheet">
 <!-- ClockPicker -->
-<link href="{{asset('admin/css/plugins/clockpicker/clockpicker.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/clockpicker/clockpicker.css')}}" rel="stylesheet">
 <!-- Datepicker -->
-<link href="{{asset('admin/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
 <!-- Ladda Button-->
-<link href="{{asset('admin/css/plugins/ladda/ladda-themeless.min.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/ladda/ladda-themeless.min.css')}}" rel="stylesheet">
 <!-- NO UI Slider -->
 {{-- <link href="{{asset('admin/css/plugins/nouslider/jquery.nouislider.css')}}" rel="stylesheet"> --}}
-<link href="{{asset('admin/css/plugins/nouslider/nouislider.min.css')}}" rel="stylesheet">
+<link href="{{asset('cmsadmin/css/plugins/nouslider/nouislider.min.css')}}" rel="stylesheet">
 
 
 @section('css-style')

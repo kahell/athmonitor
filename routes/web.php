@@ -1,7 +1,6 @@
 <?php
 // Admin
 
-
 // Users
 /*
   This route for routing view Users
@@ -35,4 +34,8 @@ Route::group(['namespace' => 'View\User'], function(){
   Route::get("users/{team}/athlete/{athlete}",'C_dashboard@athlete');
   Route::get("users/{team}/monitor",'C_dashboard@monitor');
   Route::get("users/{team}/monitor/{athlete}",'C_dashboard@scoring');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });

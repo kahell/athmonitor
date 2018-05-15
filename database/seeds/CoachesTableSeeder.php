@@ -19,11 +19,16 @@ class CoachesTableSeeder extends Seeder
       $user = User::all();
       $sport = Sports::all();
 
-      foreach (range(1,3) as $i) {
-        Coaches::create([
-          'user_id' => $user[$i - 1]->id,
-          'sport_id' => $sport[$i - 1]->id
-        ]);
-      }
+      Coaches::create([
+        'user_id' => 1,
+        'sport_id' => 1
+      ]);
+
+      // foreach (range(1,3) as $i) {
+      //   Coaches::create([
+      //     'user_id' => $user[$i - 1]->id,
+      //     'sport_id' => $sport[$i - 1]->id
+      //   ]);
+      // }
     }
 }

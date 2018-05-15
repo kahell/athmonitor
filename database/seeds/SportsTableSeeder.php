@@ -19,7 +19,7 @@ class SportsTableSeeder extends Seeder
         'description' => $faker->sentence
       ]);
       Sports::create([
-        'name' => 'Swiming',
+        'name' => 'Voleyball',
         'description' => $faker->sentence
       ]);
       Sports::create([

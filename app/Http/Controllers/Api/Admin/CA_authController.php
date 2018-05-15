@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\baseRestController;
 use App\Http\Controllers\Controller;
 use App\Model\Users\User;
 use App\Model\Users\Statuses;
+use App\Model\Teams\Coaches;
 use Illuminate\Support\Facades\Auth;
 use Hash, Mail, Validator, Session, JWTAuth, JWTFactory;
 use Illuminate\Mail\Message;
@@ -57,7 +58,6 @@ class CA_authController extends Controller
     $coach = new Coaches();
     $coach->user_id = $user_id;
     $coach->sport_id = $request->sport_id;
-    $coach->achieve_key = str_random(30);
     $coach->save();
 
     // Insert Statuses
@@ -106,7 +106,7 @@ class CA_authController extends Controller
     if($user && Hash::check($request->password, $user->password)){
       $user->save();
       $credentials = request(['username','password']);
-      $token = auth()->attempt($credentials);
+      $token = JWTAuth::attempt($credentials);
       Session::put('token', $token);
       return response()
       ->json([
@@ -241,23 +241,25 @@ class CA_authController extends Controller
 
   public function me()
   {
-    return response()->json(auth()->user());
+    return response()->json(JWTAuth::user());
   }
 
-  public function logout()
+  public function logout(Request $request)
   {
+    $header = $request->header('Authorization');
+    JWTAuth::invalidate($header);
     auth()->logout();
     return response()->json(['message' => 'Successfully logged out']);
   }
 
   public function refresh()
   {
-    return $this->respondWithToken(auth()->refresh());
+    return $this->respondWithToken(JWTAuth::refresh());
   }
 
   public function payload()
   {
-    return auth()->payload();
+    return JWTAuth::payload();
   }
 
   protected function respondWithToken($token)
@@ -265,7 +267,7 @@ class CA_authController extends Controller
         return [
           'access_token' => $token,
           'token_type' => 'bearer',
-          'expires_in' => auth()->factory()->getTTL() * 60
+          'expires_in' => JWTAuth::factory()->getTTL() * 60
         ];
     }
 }

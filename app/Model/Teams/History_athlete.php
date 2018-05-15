@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Model\Teans;
+namespace App\Model\Teams;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Support\FilterPaginateOrder;
-use App\Model\Teans\Athletes;
-use App\Model\Teans\Teams;
+use App\Model\Teams\Athletes;
+use App\Model\Teams\Teams;
 
 class History_athlete extends Model
 {
   use FilterPaginateOrder;
-  protected $fillable = 'athlete_id','team_id','started_date','end_date'];
+  protected $fillable = ['athlete_id','team_id','started_date','end_date'];
   protected $hidden = ['created_at', 'updated_at'];
   protected $filter = ['id','athlete_id','team_id','started_date','end_date'];
 

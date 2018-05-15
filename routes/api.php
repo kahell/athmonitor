@@ -1,4 +1,5 @@
 <?php
+
 Route::group(['namespace' => 'Api\Admin'], function(){
   Route::post('register','CA_authController@register');
   Route::post('login','CA_authController@login');
@@ -26,7 +27,7 @@ Route::group(['namespace' => 'Api\Sports'], function(){
   Route::get('parameters/{parameter}/edit','CA_parameter@edit');
   Route::delete('parameters/{parameter}','CA_parameter@destroy');
 });
-Route::group(['namespace' => 'Api\User'], function(){
+Route::group(['namespace' => 'Api\User', 'middleware' => ['auth:api']], function(){
   /* Team */
   Route::post('teams','CA_team@store');
   Route::post('teams/update/{team}','CA_team@update');

@@ -6,13 +6,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Support\FilterPaginateOrder;
 use App\Model\Users\Statuses;
-use App\Model\Sports\Roles;
+// use App\Model\Sports\Roles;
 use App\Model\Sports\Sports;
 use App\Model\Teams\Athletes;
 use App\Model\Teams\Coaches;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use \TCG\Voyager\Models\User as VoyagerUser;
 
-class User extends Authenticatable implements JWTSubject
+class User extends VoyagerUser implements JWTSubject
 {
     use Notifiable;
     use FilterPaginateOrder;
@@ -32,15 +33,32 @@ class User extends Authenticatable implements JWTSubject
       ];
     }
 
+    public static function formValidation(){
+      return [
+        'fullname' => 'required|min:3|max:255',
+        'gender' => 'required',
+        'avatar' => 'required',
+        'address' => 'required',
+        'username' => 'required',
+        'password' => 'required|between:6,25|',
+        'email' =>'email',
+        'bod' => 'required',
+        'phone_number' => 'required',
+        'role_id' => 'required',
+        'status' => 'required',
+        'sport' => 'required'
+      ];
+    }
+
     public function status()
     {
         return $this->hasOne(Statuses::class);
     }
 
-    public function role()
-    {
-        return $this->belongsToMany(Roles::class);
-    }
+    // public function role()
+    // {
+    //     return $this->belongsToMany(Roles::class);
+    // }
 
     public function athlete()
     {

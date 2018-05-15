@@ -17,11 +17,42 @@ class PositionTypesTableSeeder extends Seeder
       $faker = Factory::create();
       $sport = Sports::all();
 
-      foreach (range(1,3) as $i) {
+      $name = [
+        "basketball" => [
+          "Point guard","Shooting Guard","Small Forward","Power Forward","Center"
+        ],
+        "voleyball" => [
+          "Right Back", "Right Front", "Middle Front", "Left Front", "Left Back", "Middle Back"
+        ],
+        "football" => [
+          "Goalkeeper", "Centre-back", "Sweeper", "Full-back", "Wing-back",
+          "Centre midfield","Defensive midfield","Attacking midfield","Wide midfield",
+          "Centre forward", "Second striker", "Winger"
+        ]
+      ];
+      // Basket
+      foreach (range(0,4) as $i) {
         Position_types::create([
-          'name' => $faker->name,
-          'sport_id' => $sport[$i - 1]->id,
+          'name' => $name["basketball"][$i],
+          'sport_id' => 1,
         ]);
       }
+
+      // Voleyball
+      foreach (range(0,6) as $i) {
+        Position_types::create([
+          'name' => $name["voleyball"][$i],
+          'sport_id' => 1,
+        ]);
+      }
+
+      // Football
+      foreach (range(0,11) as $i) {
+        Position_types::create([
+          'name' => $name["football"][$i],
+          'sport_id' => 1,
+        ]);
+      }
+
     }
 }

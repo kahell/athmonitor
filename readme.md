@@ -18,6 +18,7 @@ MVC (Model View Controller) - Laravel
 - Admin LTE
 - RESTFUL API
 - Vue JS
+- Voyager
 
 ## Running
 - Clone this repository
@@ -34,6 +35,11 @@ MVC (Model View Controller) - Laravel
 - npm run watch
 - php artisan serve
 - Open your browser and type 127.0.0.0:8000/
+
+## Note
+Please modifiy TCG\Voyager\Http\Controllers\Controller because there is an error
+in line 211 (case relationship) to handling this error is modifiy in TCG\Voyager\Http\Controllers\ContentTypes\Relationship
+to be "return $this->request->input($this->options->column);"
 
 ## Preview
 check website : -

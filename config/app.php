@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
          Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+         TCG\Voyager\VoyagerServiceProvider::class,
         /*
          * Application Service Providers...
          */
