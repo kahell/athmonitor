@@ -54,6 +54,7 @@ vendor/tcg/voyager/routes
 vendor/tcg/voyager/src
 vendor/tcg/voyager/stubs
 vendor/tcg/voyager/tests
+vendor
 /.idea
 /.vscode
 /.vagrant
