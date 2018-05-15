@@ -39,7 +39,7 @@ class PositionTypesTableSeeder extends Seeder
       }
 
       // Voleyball
-      foreach (range(0,6) as $i) {
+      foreach (range(0,5) as $i) {
         Position_types::create([
           'name' => $name["voleyball"][$i],
           'sport_id' => 1,
